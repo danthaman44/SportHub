@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fI1-hq-qRw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pwM-Ed-iJk">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -246,21 +246,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1438" y="490"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fSr-YF-WZa">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="fI1-hq-qRw" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nVB-xK-KM8">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="pwM-Ed-iJk" kind="relationship" relationship="rootViewController" id="DGy-24-SZU"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sOa-2K-rQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1613" y="110"/>
-        </scene>
         <!--Sign In View Controller-->
         <scene sceneID="zal-cE-sfs">
             <objects>
@@ -338,8 +323,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <connections>
                         <outlet property="passField" destination="5cM-7I-j4m" id="DDp-PN-YWZ"/>
                         <outlet property="uidField" destination="BkY-2n-Sf7" id="ers-xG-lgG"/>
-                        <segue destination="8YX-ce-x5E" kind="push" identifier="LogInSeg" id="mbi-M6-Jco"/>
                         <segue destination="zJW-P4-lPe" kind="modal" identifier="SignUpSeg" id="Dvy-f5-BIr"/>
+                        <segue destination="8YX-ce-x5E" kind="modal" id="VGe-5v-KGE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HbB-hf-8LF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -415,7 +400,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Tab Bar Controller-->
         <scene sceneID="Vex-rW-GRa">
             <objects>
-                <tabBarController id="8YX-ce-x5E" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabbar" id="8YX-ce-x5E" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="cTw-Rm-PfB"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="JQR-rB-NYL">
