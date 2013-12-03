@@ -30,6 +30,11 @@
         SignUpViewController *signup = (SignUpViewController*)[storyboard instantiateViewControllerWithIdentifier:@"signup"];
         [self presentViewController:signup animated:YES completion:nil];
     }
+    else if([((UIButton*)sender).titleLabel.text isEqualToString:@"Enter"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+        UITabBarController *tabbar = (UITabBarController*)[storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
+        [self presentViewController:tabbar animated:YES completion:nil];
+    }
 }
 
 -(IBAction) resignFirst:(id)sender {
