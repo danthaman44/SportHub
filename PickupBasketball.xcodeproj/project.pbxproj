@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB68176C184D622600BE2F77 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB68176B184D622600BE2F77 /* SignUpViewController.m */; };
+		AB68176F184D623B00BE2F77 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB68176E184D623B00BE2F77 /* SignInViewController.m */; };
 		EC173ECF184D2CBF00CE7D24 /* GameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC173ECE184D2CBF00CE7D24 /* GameDetailViewController.m */; };
 		ECE0924A181A142C00F1995B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE09249181A142C00F1995B /* Foundation.framework */; };
 		ECE0924C181A142C00F1995B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE0924B181A142C00F1995B /* CoreGraphics.framework */; };
@@ -37,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB68176A184D622600BE2F77 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		AB68176B184D622600BE2F77 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		AB68176D184D623B00BE2F77 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		AB68176E184D623B00BE2F77 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		EC173ECD184D2CBF00CE7D24 /* GameDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDetailViewController.h; sourceTree = "<group>"; };
 		EC173ECE184D2CBF00CE7D24 /* GameDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDetailViewController.m; sourceTree = "<group>"; };
 		ECE09246181A142C00F1995B /* PickupBasketball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickupBasketball.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +126,10 @@
 		ECE0924F181A142C00F1995B /* PickupBasketball */ = {
 			isa = PBXGroup;
 			children = (
+				AB68176D184D623B00BE2F77 /* SignInViewController.h */,
+				AB68176E184D623B00BE2F77 /* SignInViewController.m */,
+				AB68176A184D622600BE2F77 /* SignUpViewController.h */,
+				AB68176B184D622600BE2F77 /* SignUpViewController.m */,
 				ECE09258181A142C00F1995B /* AppDelegate.h */,
 				ECE09259181A142C00F1995B /* AppDelegate.m */,
 				ECE0925B181A142C00F1995B /* Main_iPhone.storyboard */,
@@ -263,8 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB68176F184D623B00BE2F77 /* SignInViewController.m in Sources */,
 				ECE09266181A142C00F1995B /* SearchGameViewController.m in Sources */,
 				ECE0925A181A142C00F1995B /* AppDelegate.m in Sources */,
+				AB68176C184D622600BE2F77 /* SignUpViewController.m in Sources */,
 				ECE09263181A142C00F1995B /* CreateGameViewController.m in Sources */,
 				EC173ECF184D2CBF00CE7D24 /* GameDetailViewController.m in Sources */,
 				ECE09256181A142C00F1995B /* main.m in Sources */,
