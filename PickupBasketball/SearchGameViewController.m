@@ -21,6 +21,7 @@
     NSArray *playerCounts;
     NSArray *searchResults;
 }
+@synthesize mainTableView;
 
 - (void)viewDidLoad
 {
@@ -88,11 +89,13 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([segue.identifier isEqualToString:@"showRecipeDetail"]) {
-//        NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-//        GameDetailViewController *destViewController = segue.destinationViewController;
-//        destViewController.recipeName = [recipes objectAtIndex:indexPath.row];
-//    }
+    if ([segue.identifier isEqualToString:@"showGameDetail"]) {
+        NSIndexPath *indexPath = [self.mainTableView indexPathForSelectedRow];
+        GameDetailViewController *destViewController = segue.destinationViewController;
+        destViewController.location = [locations objectAtIndex:indexPath.row];
+        NSLog(@"Hello world");
+        NSLog(@"%d", indexPath.row);
+    }
 }
 
 

@@ -14,5 +14,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *locationLabel;
 @property (nonatomic, strong) IBOutlet UILabel *numPlayersLabel;
 @property (nonatomic, strong) NSString *gameId;
-
+@property (nonatomic, strong) NSString *location;
+@property (nonatomic, strong) NSString *time;
 @end
