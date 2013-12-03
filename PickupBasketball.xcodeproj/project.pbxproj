@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC173ECF184D2CBF00CE7D24 /* GameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC173ECE184D2CBF00CE7D24 /* GameDetailViewController.m */; };
 		ECE0924A181A142C00F1995B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE09249181A142C00F1995B /* Foundation.framework */; };
 		ECE0924C181A142C00F1995B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE0924B181A142C00F1995B /* CoreGraphics.framework */; };
 		ECE0924E181A142C00F1995B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE0924D181A142C00F1995B /* UIKit.framework */; };
@@ -16,7 +17,7 @@
 		ECE0925D181A142C00F1995B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECE0925B181A142C00F1995B /* Main_iPhone.storyboard */; };
 		ECE09260181A142C00F1995B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECE0925E181A142C00F1995B /* Main_iPad.storyboard */; };
 		ECE09263181A142C00F1995B /* CreateGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE09262181A142C00F1995B /* CreateGameViewController.m */; };
-		ECE09266181A142C00F1995B /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE09265181A142C00F1995B /* SecondViewController.m */; };
+		ECE09266181A142C00F1995B /* SearchGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECE09265181A142C00F1995B /* SearchGameViewController.m */; };
 		ECE09268181A142C00F1995B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECE09267181A142C00F1995B /* Images.xcassets */; };
 		ECE0926F181A142C00F1995B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE0926E181A142C00F1995B /* XCTest.framework */; };
 		ECE09270181A142C00F1995B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE09249181A142C00F1995B /* Foundation.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC173ECD184D2CBF00CE7D24 /* GameDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDetailViewController.h; sourceTree = "<group>"; };
+		EC173ECE184D2CBF00CE7D24 /* GameDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDetailViewController.m; sourceTree = "<group>"; };
 		ECE09246181A142C00F1995B /* PickupBasketball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickupBasketball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE09249181A142C00F1995B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECE0924B181A142C00F1995B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -50,8 +53,8 @@
 		ECE0925F181A142C00F1995B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		ECE09261181A142C00F1995B /* CreateGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateGameViewController.h; sourceTree = "<group>"; };
 		ECE09262181A142C00F1995B /* CreateGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateGameViewController.m; sourceTree = "<group>"; };
-		ECE09264181A142C00F1995B /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		ECE09265181A142C00F1995B /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		ECE09264181A142C00F1995B /* SearchGameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchGameViewController.h; sourceTree = "<group>"; };
+		ECE09265181A142C00F1995B /* SearchGameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchGameViewController.m; sourceTree = "<group>"; };
 		ECE09267181A142C00F1995B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		ECE0926D181A142C00F1995B /* PickupBasketballTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PickupBasketballTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE0926E181A142C00F1995B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -123,8 +126,10 @@
 				ECE0925E181A142C00F1995B /* Main_iPad.storyboard */,
 				ECE09261181A142C00F1995B /* CreateGameViewController.h */,
 				ECE09262181A142C00F1995B /* CreateGameViewController.m */,
-				ECE09264181A142C00F1995B /* SecondViewController.h */,
-				ECE09265181A142C00F1995B /* SecondViewController.m */,
+				ECE09264181A142C00F1995B /* SearchGameViewController.h */,
+				ECE09265181A142C00F1995B /* SearchGameViewController.m */,
+				EC173ECD184D2CBF00CE7D24 /* GameDetailViewController.h */,
+				EC173ECE184D2CBF00CE7D24 /* GameDetailViewController.m */,
 				ECE09267181A142C00F1995B /* Images.xcassets */,
 				ECE09250181A142C00F1995B /* Supporting Files */,
 			);
@@ -258,9 +263,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECE09266181A142C00F1995B /* SecondViewController.m in Sources */,
+				ECE09266181A142C00F1995B /* SearchGameViewController.m in Sources */,
 				ECE0925A181A142C00F1995B /* AppDelegate.m in Sources */,
 				ECE09263181A142C00F1995B /* CreateGameViewController.m in Sources */,
+				EC173ECF184D2CBF00CE7D24 /* GameDetailViewController.m in Sources */,
 				ECE09256181A142C00F1995B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,6 +486,7 @@
 				ECE09280181A142C00F1995B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ECE09281181A142C00F1995B /* Build configuration list for PBXNativeTarget "PickupBasketballTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +495,7 @@
 				ECE09283181A142C00F1995B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

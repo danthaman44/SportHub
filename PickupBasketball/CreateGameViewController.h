@@ -12,12 +12,14 @@
     UIDatePicker *datePicker;
     UIButton *createButton;
     UIPickerView *locationPicker;
+    UISwitch *togglePrivate;
     NSArray *locations;
 }
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (strong, nonatomic) IBOutlet UIButton *createButton;
 @property (strong, nonatomic) IBOutlet UIPickerView *locationPicker;
 @property (strong, nonatomic) NSArray *locations;
+@property (strong, nonatomic) IBOutlet UISwitch *togglePrivate;
 
 -(IBAction)displayGameInfo:(id)sender;
 

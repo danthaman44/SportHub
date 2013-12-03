@@ -18,6 +18,7 @@
 @synthesize createButton;
 @synthesize locationPicker;
 @synthesize locations;
+@synthesize togglePrivate;
 
 - (void)viewDidLoad
 {
@@ -32,6 +33,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)sendJSON:(NSString*) arg1 withArg2: (NSString*) arg2 {
+    NSString* jsonData = @"{\"Query\" : \"Test Data\"}";
+    NSData* requestData = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
+    
+    // Create URL to POST jsonData to.
+    NSString* urlString = @"http://dukedb-spm23.cloudapp.net/django/db-beers/create_game";
+    NSURL* url = [NSURL URLWithString:urlString];
+    
+    // Create request.
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody: requestData];
+    
+    // Send request synchronously.
+    NSURLResponse* response = [[NSURLResponse alloc] init];
+    NSError* error = nil;
+    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    
+    NSString *responseBody = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    NSLog(@"Response: ");
+    NSLog(responseBody);
+    
+    // Check result.
+    if (error != nil)
+    {
+        NSLog(@"submitted request!");
+    }
+    else {
+        NSString* errorLogFormat = @"request failed, error: %@";
+        NSLog(errorLogFormat, error);
+    }
+    
+}
+
 -(IBAction)displayGameInfo:(id)sender {
 	NSDate * selected = [datePicker date];
 	NSString * date = [selected description];
@@ -41,7 +77,7 @@
     NSString * location = [locations objectAtIndex:row];
     NSLog(@"%@", location);
     
-
+    [self sendJSON:date withArg2:location ];
 }
 
 // returns the number of 'columns' to display.

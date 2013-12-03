@@ -1,5 +1,5 @@
 //
-//  SecondViewController.h
+//  SearchGameViewController.h
 //  PickupBasketball
 //
 //  Created by Wei Deng on 10/24/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface SearchGameViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @end
