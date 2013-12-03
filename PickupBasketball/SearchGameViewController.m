@@ -93,8 +93,8 @@
         NSIndexPath *indexPath = [self.mainTableView indexPathForSelectedRow];
         GameDetailViewController *destViewController = segue.destinationViewController;
         destViewController.location = [locations objectAtIndex:indexPath.row];
-        NSLog(@"Hello world");
-        NSLog(@"%d", indexPath.row);
+        destViewController.time = [times objectAtIndex:indexPath.row];
+        destViewController.numPlayers = [playerCounts objectAtIndex:indexPath.row];
     }
 }
 

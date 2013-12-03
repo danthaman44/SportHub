@@ -10,6 +10,7 @@
 		AB68176C184D622600BE2F77 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB68176B184D622600BE2F77 /* SignUpViewController.m */; };
 		AB68176F184D623B00BE2F77 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB68176E184D623B00BE2F77 /* SignInViewController.m */; };
 		EC173ECF184D2CBF00CE7D24 /* GameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC173ECE184D2CBF00CE7D24 /* GameDetailViewController.m */; };
+		EC173ED2184DA4F800CE7D24 /* MyGamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC173ED1184DA4F800CE7D24 /* MyGamesViewController.m */; };
 		ECE0924A181A142C00F1995B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE09249181A142C00F1995B /* Foundation.framework */; };
 		ECE0924C181A142C00F1995B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE0924B181A142C00F1995B /* CoreGraphics.framework */; };
 		ECE0924E181A142C00F1995B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECE0924D181A142C00F1995B /* UIKit.framework */; };
@@ -45,6 +46,8 @@
 		AB68176E184D623B00BE2F77 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		EC173ECD184D2CBF00CE7D24 /* GameDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDetailViewController.h; sourceTree = "<group>"; };
 		EC173ECE184D2CBF00CE7D24 /* GameDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDetailViewController.m; sourceTree = "<group>"; };
+		EC173ED0184DA4F800CE7D24 /* MyGamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGamesViewController.h; sourceTree = "<group>"; };
+		EC173ED1184DA4F800CE7D24 /* MyGamesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGamesViewController.m; sourceTree = "<group>"; };
 		ECE09246181A142C00F1995B /* PickupBasketball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PickupBasketball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE09249181A142C00F1995B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECE0924B181A142C00F1995B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -140,6 +143,8 @@
 				ECE09265181A142C00F1995B /* SearchGameViewController.m */,
 				EC173ECD184D2CBF00CE7D24 /* GameDetailViewController.h */,
 				EC173ECE184D2CBF00CE7D24 /* GameDetailViewController.m */,
+				EC173ED0184DA4F800CE7D24 /* MyGamesViewController.h */,
+				EC173ED1184DA4F800CE7D24 /* MyGamesViewController.m */,
 				ECE09267181A142C00F1995B /* Images.xcassets */,
 				ECE09250181A142C00F1995B /* Supporting Files */,
 			);
@@ -277,6 +282,7 @@
 				ECE09266181A142C00F1995B /* SearchGameViewController.m in Sources */,
 				ECE0925A181A142C00F1995B /* AppDelegate.m in Sources */,
 				AB68176C184D622600BE2F77 /* SignUpViewController.m in Sources */,
+				EC173ED2184DA4F800CE7D24 /* MyGamesViewController.m in Sources */,
 				ECE09263181A142C00F1995B /* CreateGameViewController.m in Sources */,
 				EC173ECF184D2CBF00CE7D24 /* GameDetailViewController.m in Sources */,
 				ECE09256181A142C00F1995B /* main.m in Sources */,
