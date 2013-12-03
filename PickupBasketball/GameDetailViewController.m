@@ -11,8 +11,6 @@
 @interface GameDetailViewController ()
 {
     NSInteger numPlayers;
-    NSDate *time;
-    NSString *location;
 }
 @end
 
@@ -21,6 +19,7 @@
 @synthesize locationLabel;
 @synthesize numPlayersLabel;
 @synthesize gameId;
+@synthesize location;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +39,8 @@
     [outputFormatter setDateFormat:@"HH:mm:ss"];
     NSString *newDateString = [outputFormatter stringFromDate:now];
     timeLabel.text = newDateString;
+    
+    locationLabel.text = location;
     
 }
 

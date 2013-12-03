@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pwM-Ed-iJk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pwM-Ed-iJk">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Create Game View Controller - First-->
@@ -201,7 +201,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="jvV-et-isQ" kind="push" id="jOs-cN-uiA"/>
+                                            <segue destination="jvV-et-isQ" kind="push" identifier="showGameDetail" id="jOs-cN-uiA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -230,6 +230,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <navigationItem key="navigationItem" title="Search games" id="cHJ-H9-K3q"/>
                     <connections>
+                        <outlet property="mainTableView" destination="i2U-KF-cfo" id="JwI-73-77q"/>
                         <outlet property="searchDisplayController" destination="Bs5-Jh-YVe" id="Hdb-Yc-VJK"/>
                     </connections>
                 </viewController>
