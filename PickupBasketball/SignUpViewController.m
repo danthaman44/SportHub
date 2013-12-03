@@ -25,7 +25,35 @@
 
 -(IBAction)selectAndMove:(id)sender {
         if([((UIButton*)sender).titleLabel.text isEqualToString:@"Enter"]){
-            [self dismissViewControllerAnimated:YES completion:nil];
+            if([self.passField.text isEqualToString:self.passVerifyField.text]) {
+                NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/create_user"];
+                NSMutableURLRequest *theRequest=[NSMutableURLRequest
+                                                 requestWithURL:[NSURL URLWithString:
+                                                                 queryString]
+                                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                 timeoutInterval:60.0];
+                [theRequest setHTTPMethod:@"POST"];
+                NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:self.uidField.text, @"Username",
+                                            self.passField.text, @"Password", nil];
+                
+                NSError *error=nil;
+                
+                NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict
+                                                                   options:NSJSONWritingPrettyPrinted error:&error];
+                
+                
+                [theRequest setHTTPBody:jsonData];
+                NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
+                NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+                NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+                if (con) {
+                    
+                    NSLog(@"success! %@", returnString);
+                } else { 
+                    //something bad happened
+                }
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
         }
 }
 

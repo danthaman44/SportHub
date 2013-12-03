@@ -11,6 +11,7 @@
 @interface SignUpViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *uidField;
 @property (weak, nonatomic) IBOutlet UITextField *passField;
+@property (weak, nonatomic) IBOutlet UITextField *passVerifyField;
 
 
 -(IBAction)selectAndMove:(id)sender;
