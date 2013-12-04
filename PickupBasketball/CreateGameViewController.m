@@ -33,85 +33,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)sendJSON:(NSString*) arg1 withArg2: (NSString*) arg2 {
-//    NSString* jsonData = @"{\"Query\" : \"Test Data\"}";
-//    NSData* requestData = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
-//    
-//    // Create URL to POST jsonData to.
-//    NSString* urlString = @"http://dukedb-spm23.cloudapp.net/django/db-beers/create_game";
-//    NSURL* url = [NSURL URLWithString:urlString];
-//    
-//    // Create request.
-//    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-//    [request setHTTPMethod:@"POST"];
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    [request setHTTPBody: requestData];
-//    
-//    // Send request synchronously.
-//    NSURLResponse* response = [[NSURLResponse alloc] init];
-//    NSError* error = nil;
-//    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-//    
-//    NSString *responseBody = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-//    NSLog(@"Response: ");
-//    NSLog(responseBody);
-//    
-//    // Check result.
-//    if (error != nil)
-//    {
-//        NSLog(@"submitted request!");
-//    }
-//    else {
-//        NSString* errorLogFormat = @"request failed, error: %@";
-//        NSLog(errorLogFormat, error);
-//    }
-    
-}
-
--(IBAction)displayGameInfo:(id)sender {
-	NSDate * selected = [datePicker date];
-	NSString * date = [selected description];
-    NSLog(@"%@",date);
-    
-    NSInteger row = [locationPicker selectedRowInComponent:0];
-    NSString * location = [locations objectAtIndex:row];
-    NSLog(@"%@", location);
-    
-//    [self sendJSON:date withArg2:location ];
-    NSString* jsonData = @"{\"Query\" : \"Test Data\"}";
-    NSData* requestData = [jsonData dataUsingEncoding:NSUTF8StringEncoding];
-    
-    // Create URL to POST jsonData to.
-    NSString* urlString = @"http://dukedb-spm23.cloudapp.net/django/db-beers/create_game";
-    NSURL* url = [NSURL URLWithString:urlString];
-    
-    // Create request.
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"GET"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody: requestData];
-    
-    // Send request synchronously.
-    NSURLResponse* response = [[NSURLResponse alloc] init];
-    NSError* error = nil;
-    [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    
-    NSString *responseBody = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    NSLog(@"Response: ");
-    NSLog(responseBody);
-    
-    // Check result.
-    
-    if (error != nil)
-    {
-        NSLog(@"submitted request!");
-    }
-    else {
-        NSString* errorLogFormat = @"request failed, error: %@";
-        NSLog(errorLogFormat, error);
-    }
-}
-
 // returns the number of 'columns' to display.
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
@@ -129,4 +50,35 @@
     return [self.locations objectAtIndex:row];
 }
 
+-(IBAction)displayGameInfo:(id)sender {
+	NSDate * selected = [datePicker date];
+	NSString * date = [selected description];
+    NSLog(@"%@",date);
+    
+    NSInteger row = [locationPicker selectedRowInComponent:0];
+    NSString * location = [locations objectAtIndex:row];
+    NSLog(@"%@", location);
+    
+//    [self sendJSON:date withArg2:location ];
+    NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/create_game"];
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:queryString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    
+    [theRequest setHTTPMethod:@"POST"];
+    
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:date, @"Date", location, @"Location", nil];
+    NSError *error=nil;
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict options:NSJSONWritingPrettyPrinted error:&error];
+    NSString* blah = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    [theRequest setHTTPBody:jsonData];
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
+    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    if (con) {
+        NSLog(@"success! %@", returnString);
+    } else {
+        
+        //something bad happened
+        
+    }
+}
 @end

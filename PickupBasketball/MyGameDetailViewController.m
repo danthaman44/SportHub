@@ -1,25 +1,18 @@
 //
-//  GameDetailViewController.m
+//  MyGameDetailViewController.m
 //  PickupBasketball
 //
-//  Created by Wei Deng on 12/2/13.
+//  Created by Wei Deng on 12/4/13.
 //  Copyright (c) 2013 Wei Deng. All rights reserved.
 //
 
-#import "GameDetailViewController.h"
+#import "MyGameDetailViewController.h"
 
-@interface GameDetailViewController ()
+@interface MyGameDetailViewController ()
 
 @end
 
-@implementation GameDetailViewController
-@synthesize timeLabel;
-@synthesize time;
-@synthesize locationLabel;
-@synthesize numPlayersLabel;
-@synthesize gameId;
-@synthesize location;
-@synthesize numPlayers;
+@implementation MyGameDetailViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,10 +27,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    timeLabel.text = time;
-    locationLabel.text = location;
-    numPlayersLabel.text = numPlayers;
-    
 }
 
 - (void)didReceiveMemoryWarning
