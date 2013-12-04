@@ -7,6 +7,8 @@
 //
 
 #import "MyGamesViewController.h"
+#import "MyGameDetailViewController.h"
+
 
 @interface MyGamesViewController ()
 {
@@ -42,6 +44,28 @@
         myIntegers[i] = i;
     }
     
+    NSDate *today = [NSDate date];
+    NSDate *pickerDate = [today dateByAddingTimeInterval:10];
+    
+    //Just printing the time for debugging purposes.
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString *currentTime = [dateFormatter stringFromDate:today];
+    NSLog(@"User's current time in their preference format:%@",currentTime);
+    
+    
+    
+    // Schedule the notification
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+
+    localNotification.fireDate = pickerDate;
+    localNotification.alertBody = @"You have a game in hour";
+    localNotification.alertAction = @"You have a game in hour";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    
     
 }
 
@@ -58,7 +82,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *simpleTableIdentifier = @"GameCell";
+    static NSString *simpleTableIdentifier = @"MyGameCell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
@@ -78,10 +102,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showMyGameDetail"]) {
         NSIndexPath *indexPath = [self.mainTableView indexPathForSelectedRow];
-//        GameDetailViewController *destViewController = segue.destinationViewController;
-//        destViewController.location = [locations objectAtIndex:indexPath.row];
-//        destViewController.time = [times objectAtIndex:indexPath.row];
-//        destViewController.numPlayers = [playerCounts objectAtIndex:indexPath.row];
+        MyGameDetailViewController *destViewController = segue.destinationViewController;
+        destViewController.location = [locations objectAtIndex:indexPath.row];
+        destViewController.time = [times objectAtIndex:indexPath.row];
+        destViewController.numPlayers = [playerCounts objectAtIndex:indexPath.row];
     }
 }
 

@@ -10,4 +10,12 @@
 
 @interface MyGameDetailViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UILabel *timeLabel;
+@property (nonatomic, strong) IBOutlet UILabel *locationLabel;
+@property (nonatomic, strong) IBOutlet UILabel *numPlayersLabel;
+@property (nonatomic, strong) NSString *gameId;
+@property (nonatomic, strong) NSString *location;
+@property (nonatomic, strong) NSString *time;
+@property (nonatomic, strong) NSString *numPlayers;
+
 @end

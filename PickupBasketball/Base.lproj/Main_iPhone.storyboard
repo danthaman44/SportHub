@@ -174,7 +174,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y0Z-qj-iVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1972" y="490"/>
+            <point key="canvasLocation" x="1325" y="520"/>
         </scene>
         <!--Search Game View Controller - Second-->
         <scene sceneID="ot8-2e-RuS">
@@ -245,7 +245,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1438" y="490"/>
+            <point key="canvasLocation" x="952" y="513"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="zal-cE-sfs">
@@ -454,10 +454,23 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <navigationItem title="My games" id="zUS-9u-Rek"/>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BDM-DF-Vdb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="BDM-DF-Vdb">
                                 <rect key="frame" x="0.0" y="86" width="320" height="284"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyGameCell" id="oUi-fn-2u7">
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oUi-fn-2u7">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="wz2-zi-r9a" kind="push" identifier="showMyGameDetail" id="mKx-ZY-uGm"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="qcw-uU-IxF" id="bvu-nd-tl6"/>
                                     <outlet property="delegate" destination="qcw-uU-IxF" id="mMh-vq-pNi"/>
@@ -467,31 +480,31 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="My games" id="lca-Q8-ml5"/>
-                    <navigationItem key="navigationItem" id="coQ-W6-cd7"/>
+                    <navigationItem key="navigationItem" title="My games" id="coQ-W6-cd7"/>
                     <connections>
                         <outlet property="mainTableView" destination="BDM-DF-Vdb" id="Vbs-NQ-Yqh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C9Q-qi-wfg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="196" y="1041"/>
+            <point key="canvasLocation" x="176" y="1153"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - My games-->
         <scene sceneID="SY6-Iw-k9U">
             <objects>
                 <navigationController definesPresentationContext="YES" id="UiQ-q7-NcP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Hli-Le-mfJ"/>
+                    <tabBarItem key="tabBarItem" title="My games" id="Hli-Le-mfJ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FUI-kr-QqT">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="qcw-uU-IxF" kind="push" id="ZNn-ul-W77"/>
+                        <segue destination="qcw-uU-IxF" kind="relationship" relationship="rootViewController" id="jgR-WF-IO8"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xrY-7K-Ott" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-261" y="1041"/>
+            <point key="canvasLocation" x="-284" y="1064"/>
         </scene>
         <!--Navigation Controller - Search games-->
         <scene sceneID="7cW-PA-FL8">
@@ -510,7 +523,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14f-Oj-jry" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="990" y="490"/>
+            <point key="canvasLocation" x="544" y="508"/>
         </scene>
         <!--Game Detail View Controller - Game Info-->
         <scene sceneID="EsX-KJ-qcj">
@@ -592,7 +605,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsh-Ye-gKy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="568" y="1041"/>
+            <point key="canvasLocation" x="635" y="1159"/>
         </scene>
     </scenes>
     <resources>

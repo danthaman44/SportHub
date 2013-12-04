@@ -13,6 +13,13 @@
 @end
 
 @implementation MyGameDetailViewController
+@synthesize timeLabel;
+@synthesize time;
+@synthesize locationLabel;
+@synthesize numPlayersLabel;
+@synthesize gameId;
+@synthesize location;
+@synthesize numPlayers;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +34,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    timeLabel.text = time;
+    locationLabel.text = location;
+    numPlayersLabel.text = numPlayers;
 }
 
 - (void)didReceiveMemoryWarning
