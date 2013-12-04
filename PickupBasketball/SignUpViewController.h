@@ -12,6 +12,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *uidField;
 @property (weak, nonatomic) IBOutlet UITextField *passField;
 @property (weak, nonatomic) IBOutlet UITextField *passVerifyField;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *phnumField;
 
 
 -(IBAction)selectAndMove:(id)sender;
