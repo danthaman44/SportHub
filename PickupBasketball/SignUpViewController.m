@@ -34,19 +34,22 @@
                                                  timeoutInterval:60.0];
                 [theRequest setHTTPMethod:@"POST"];
                 NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:self.uidField.text, @"Username",
-                                            self.passField.text, @"Password", nil];
+                                            self.passField.text, @"Password", self.emailField.text, @"Email", self.phnumField.text, @"Phone", nil];
                 
                 NSError *error=nil;
                 
                 NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict
                                                                    options:NSJSONWritingPrettyPrinted error:&error];
+                NSString* blah = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                NSLog(@"%@", blah);
                 
                 
                 [theRequest setHTTPBody:jsonData];
                 NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
                 NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
                 NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-                if (con) {
+                NSLog(@"%@", returnString);
+                if (con && [returnString isEqualToString:@"True"]) {
                     
                     NSLog(@"success! %@", returnString);
                 } else { 
