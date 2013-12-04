@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pwM-Ed-iJk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pwM-Ed-iJk">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Create Game View Controller - First-->
@@ -495,7 +495,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MyGameCell" id="oUi-fn-2u7">
                                         <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oUi-fn-2u7">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oUi-fn-2u7" id="AwA-dR-iBz">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -505,8 +505,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="qcw-uU-IxF" id="bvu-nd-tl6"/>
-                                    <outlet property="delegate" destination="qcw-uU-IxF" id="mMh-vq-pNi"/>
+                                    <outlet property="dataSource" destination="qcw-uU-IxF" id="odH-Yh-VAL"/>
+                                    <outlet property="delegate" destination="qcw-uU-IxF" id="H3V-KU-aOJ"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -558,10 +558,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="544" y="508"/>
         </scene>
-        <!--Game Detail View Controller - Game Info-->
+        <!--My Game Detail View Controller - Game Info-->
         <scene sceneID="EsX-KJ-qcj">
             <objects>
-                <viewController id="wz2-zi-r9a" customClass="GameDetailViewController" sceneMemberID="viewController">
+                <viewController id="wz2-zi-r9a" customClass="MyGameDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2H1-gb-fgG"/>
                         <viewControllerLayoutGuide type="bottom" id="kcS-cK-yFf"/>

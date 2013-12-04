@@ -16,6 +16,6 @@
 @property (nonatomic, strong) NSString *gameId;
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *time;
-@property (nonatomic, strong) NSString *numPlayers;
+@property (nonatomic, assign) NSInteger numPlayers;
 
 @end

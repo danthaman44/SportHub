@@ -36,7 +36,7 @@
 	// Do any additional setup after loading the view.
     timeLabel.text = time;
     locationLabel.text = location;
-    numPlayersLabel.text = numPlayers;
+//    numPlayersLabel.text = numPlayers;
     
 }
 
