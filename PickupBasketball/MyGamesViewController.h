@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyGamesViewController : UIViewController
+@interface MyGamesViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) IBOutlet UITableView  *mainTableView;
 
 @end
