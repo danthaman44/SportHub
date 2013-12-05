@@ -9,9 +9,5 @@
 #import "Game.h"
 
 @implementation Game
-@synthesize location;
-@synthesize time;
-@synthesize id;
-@synthesize numPlayers;
 
 @end

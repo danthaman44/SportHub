@@ -17,22 +17,18 @@
 
 @implementation SearchGameViewController
 {
-    NSArray *locations;
-    NSArray *times;
-    NSArray *Ids;
-    NSArray *playerCounts;
-    NSArray *searchResults;
-    NSArray *games;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    locations = [NSArray arrayWithObjects:@"Wilson", @"Brodie", @"Central", @"Brodie",nil];
-    times = [NSArray arrayWithObjects:@"5:00", @"6:00", @"7:00", @"8:00", nil];
-    playerCounts = [NSArray arrayWithObjects:@"5", @"9", @"4", @"3", nil];
-    
+//    locations = [NSArray arrayWithObjects:@"Wilson", @"Brodie", @"Central", @"Brodie",nil];
+//    times = [NSArray arrayWithObjects:@"5:00", @"6:00", @"7:00", @"8:00", nil];
+//    playerCounts = [NSArray arrayWithObjects:@"5", @"9", @"4", @"3", nil];
+    _games = [[NSMutableArray alloc] init];
+    _privateGames = [[NSMutableArray alloc] init];
+    _searchResults = [[NSArray alloc] init];
     NSString *serverAddress = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/see_games"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverAddress]
                                                            cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
@@ -50,11 +46,11 @@
    // }
     NSError *theError = nil;
     NSArray* jsonData = [[CJSONDeserializer deserializer] deserialize:response error:&theError];
-    NSMutableArray *allGames = [NSMutableArray array];
+  //  NSMutableArray *allGames = [NSMutableArray array];
 
     for (NSArray* object in jsonData) {
         Game *g1 = [[Game alloc] init];
-        g1.id = 0;
+        g1.id = [object objectAtIndex:6];
         g1.numPlayers = 3;
         g1.location = [object objectAtIndex:1];
         NSString *str =[object objectAtIndex:2];
@@ -62,10 +58,19 @@
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         NSDate *date = [formatter dateFromString:str];
         g1.time = date;
-        [allGames addObject:g1];
+        g1.sport = [object objectAtIndex:3];
+        g1.isPrivate = [object objectAtIndex:5];
+        g1.numPlayers = [object objectAtIndex:4];
+        
+        if(g1.isPrivate) {
+            [self.privateGames addObject:g1];
+        }
+        else {
+            [self.games addObject:g1];
+        }
         
     }
-    games = [NSArray arrayWithArray:allGames];
+  //  games = [NSArray arrayWithArray:allGames];
    // NSLog(@"%@", jsonData);
     NSLog(@"response: ");
     NSLog(responseBody);
@@ -91,10 +96,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [searchResults count];
+        return [self.searchResults count];
         
     } else {
-        return [games count];
+        return [self.games count];
         
     }
 }
@@ -110,9 +115,9 @@
     }
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [searchResults objectAtIndex:indexPath.row];
+        cell.textLabel.text = [self.searchResults objectAtIndex:indexPath.row];
     } else {
-        Game *g = [games objectAtIndex:indexPath.row];
+        Game *g = [self.games objectAtIndex:indexPath.row];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
         NSString *time = [dateFormatter stringFromDate:g.time];
@@ -128,10 +133,10 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF contains[cd] %@",
+                                    predicateWithFormat:@"SELF.location contains[cd] %@",
                                     searchText];
     
-    searchResults = [locations filteredArrayUsingPredicate:resultPredicate];
+    self.searchResults = [self.games filteredArrayUsingPredicate:resultPredicate];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
@@ -148,7 +153,7 @@
     if ([segue.identifier isEqualToString:@"showGameDetail"]) {
         NSIndexPath *indexPath = [self.mainTableView indexPathForSelectedRow];
         GameDetailViewController *destViewController = segue.destinationViewController;
-        Game *main = [games objectAtIndex:indexPath.row];
+        Game *main = [self.games objectAtIndex:indexPath.row];
         destViewController.location = main.location;
         destViewController.time = main.time;
         destViewController.numPlayers = main.numPlayers;

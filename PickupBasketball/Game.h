@@ -14,4 +14,5 @@
 @property (strong, nonatomic) NSDate *time;
 @property (assign, nonatomic) NSInteger id;
 @property (assign, nonatomic) NSInteger numPlayers;
+@property (assign) bool isPrivate;
 @end
