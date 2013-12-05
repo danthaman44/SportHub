@@ -54,4 +54,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)leaveGame {
+    NSLog(@"Button pressed");
+}
+
+
 @end

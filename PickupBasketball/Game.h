@@ -10,6 +10,7 @@
 
 @interface Game : NSObject
 @property (strong, nonatomic) NSString *location;
+@property (strong, nonatomic) NSString *sport;
 @property (strong, nonatomic) NSDate *time;
 @property (assign, nonatomic) NSInteger id;
 @property (assign, nonatomic) NSInteger numPlayers;

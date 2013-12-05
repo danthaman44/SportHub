@@ -8,6 +8,7 @@
 
 #import "SearchGameViewController.h"
 #import "GameDetailViewController.h"
+#import "Game.h"
 
 @interface SearchGameViewController ()
 
@@ -20,6 +21,7 @@
     NSArray *Ids;
     NSArray *playerCounts;
     NSArray *searchResults;
+    NSArray *games;
 }
 @synthesize mainTableView;
 
@@ -39,11 +41,76 @@
    [request setHTTPMethod: @"GET"];
     NSError *requestError;
     NSURLResponse *urlResponse = nil;
-    NSData *response1 = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
-    NSString *responseBody = [[NSString alloc] initWithData:response1 encoding:NSUTF8StringEncoding];
+    NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
+    NSString *responseBody = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
     NSLog(@"response: ");
     NSLog(responseBody);
     
+    //==============================================================================
+    //parsing JSON data
+    
+    NSError *localError = nil;
+    NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:response options:0 error:&localError];
+    
+//    if (localError != nil) {
+//        *error = localError;
+//        return nil;
+//    }
+    
+    NSMutableArray *gamesFromServer = [[NSMutableArray alloc] init];
+    
+    NSArray *results = [parsedObject valueForKey:@"results"];
+    NSLog(@"Count %d", results.count);
+    
+    for (NSDictionary *groupDic in results) {
+        //Game *game = [[Game alloc] init];
+        
+        for (NSString *key in groupDic) {
+//            NSLog(key);
+//            if ([game respondsToSelector:NSSelectorFromString(key)]) {
+//                [game setValue:[groupDic valueForKey:key] forKey:key];
+//            }
+        }
+        
+//        [gamesFromServer addObject:game];
+    }
+//    
+//    return groups;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //Seeding some games
+    Game *g1 = [[Game alloc] init];
+    g1.id = 0;
+    g1.numPlayers = 5;
+    g1.location = @"Wilson";
+    NSString *str =@"12/4/2013 09:25 PM";
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"MM/dd/yyyy HH:mm a"];
+    NSDate *date = [formatter dateFromString:str];
+    g1.time = date;
+    
+    Game *g2 = [[Game alloc] init];
+    g2.id = 1;
+    g2.numPlayers = 7;
+    g2.location = @"Brodie";
+    NSString *str2 =@"12/5/2013 07:17 PM";
+    [formatter setDateFormat:@"MM/dd/yyyy HH:mm a"];
+    NSDate *date2 = [formatter dateFromString:str2];
+    g2.time = date2;
+    
+    NSMutableArray *allGames = [NSMutableArray array];
+    [allGames addObject:g1];
+    [allGames addObject:g2];
+    games = [NSArray arrayWithArray:allGames];
 
 }
 
@@ -59,7 +126,7 @@
         return [searchResults count];
         
     } else {
-        return [locations count];
+        return [games count];
         
     }
 }
@@ -77,10 +144,14 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         cell.textLabel.text = [searchResults objectAtIndex:indexPath.row];
     } else {
-        NSString *time = [times objectAtIndex:indexPath.row];
-        NSString *location = [locations objectAtIndex:indexPath.row];
+        Game *g = [games objectAtIndex:indexPath.row];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+        NSString *time = [dateFormatter stringFromDate:g.time];
+        NSString *location = g.location;
         NSString *cellValue = [NSString stringWithFormat: @"%@ %@ %@", time, @" - ", location];
         cell.textLabel.text = cellValue;
+        return cell;
     }
     
     return cell;
@@ -109,9 +180,10 @@
     if ([segue.identifier isEqualToString:@"showGameDetail"]) {
         NSIndexPath *indexPath = [self.mainTableView indexPathForSelectedRow];
         GameDetailViewController *destViewController = segue.destinationViewController;
-        destViewController.location = [locations objectAtIndex:indexPath.row];
-        destViewController.time = [times objectAtIndex:indexPath.row];
-        destViewController.numPlayers = [playerCounts objectAtIndex:indexPath.row];
+        Game *main = [games objectAtIndex:indexPath.row];
+        destViewController.location = main.location;
+        destViewController.time = main.time;
+        destViewController.numPlayers = main.numPlayers;
     }
 }
 

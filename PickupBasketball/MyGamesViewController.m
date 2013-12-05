@@ -61,12 +61,9 @@
     NSDate *date2 = [formatter dateFromString:str2];
     g2.time = date2;
     
-    Game *g3 = [[Game alloc] init];
-    
     NSMutableArray *allGames = [NSMutableArray array];
     [allGames addObject:g1];
     [allGames addObject:g2];
-    [allGames addObject:g3];
     games = [NSArray arrayWithArray:allGames];
     
     

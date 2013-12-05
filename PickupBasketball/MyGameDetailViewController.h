@@ -18,4 +18,6 @@
 @property (nonatomic, strong) NSDate *time;
 @property (assign, nonatomic) NSInteger numPlayers;
 
+-(IBAction)leaveGame;
+
 @end

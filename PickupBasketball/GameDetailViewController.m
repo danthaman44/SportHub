@@ -34,9 +34,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    timeLabel.text = time;
+	// Do any additional setup after loading the view.
+    //Show the game time
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString *timeForLabel = [dateFormatter stringFromDate:time];
+    timeLabel.text = timeForLabel;
+    
+    //Show game location
     locationLabel.text = location;
-//    numPlayersLabel.text = numPlayers;
+    
+    //Show number of players
+    NSString *temp = [NSString stringWithFormat:@"%d", numPlayers];
+    numPlayersLabel.text = temp;
     
 }
 
@@ -44,6 +54,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)joinGame {
+    NSLog(@"Button pressed");
 }
 
 @end
