@@ -14,11 +14,11 @@
 
 @implementation CreateGameViewController
 
-@synthesize datePicker;
-@synthesize createButton;
-@synthesize locationPicker;
-@synthesize locations;
-@synthesize togglePrivate;
+//@synthesize datePicker;
+//@synthesize createButton;
+//@synthesize locationPicker;
+//@synthesize locations;
+//@synthesize togglePrivate;
 
 - (void)viewDidLoad
 {
@@ -65,10 +65,9 @@
     
     [theRequest setHTTPMethod:@"POST"];
     
-    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:date, @"Date", location, @"Location", nil];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:self.userID, @"Username", date, @"Date", location, @"Location", sport, @"Sport", self.togglePrivate.  nil];
     NSError *error=nil;
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict options:NSJSONWritingPrettyPrinted error:&error];
-    NSString* blah = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     [theRequest setHTTPBody:jsonData];
     NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];

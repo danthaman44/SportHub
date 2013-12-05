@@ -8,6 +8,7 @@
 
 #import "SignInViewController.h"
 #import "SignUpViewController.h"
+#import "CreateGameViewController.h"
 
 @interface SignInViewController ()
 
@@ -31,9 +32,43 @@
         [self presentViewController:signup animated:YES completion:nil];
     }
     else if([((UIButton*)sender).titleLabel.text isEqualToString:@"Enter"]){
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-        UITabBarController *tabbar = (UITabBarController*)[storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
-        [self presentViewController:tabbar animated:YES completion:nil];
+        NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/login_user"];
+        NSMutableURLRequest *theRequest=[NSMutableURLRequest
+                                         requestWithURL:[NSURL URLWithString:
+                                                         queryString]
+                                         cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                         timeoutInterval:60.0];
+        [theRequest setHTTPMethod:@"POST"];
+        NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:self.uidField.text, @"Username",
+                                  self.passField.text, @"Password", nil];
+        
+        NSError *error=nil;
+        
+        NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict
+                                                           options:NSJSONWritingPrettyPrinted error:&error];
+        NSString* blah = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        //NSLog(@"%@", blah);
+        
+        
+        [theRequest setHTTPBody:jsonData];
+        NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
+        NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+        NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+        //NSLog(@"%@", returnString);
+        if([returnString isEqualToString:@"True"]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+            UITabBarController *tabbar = (UITabBarController*)[storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
+            ((CreateGameViewController*)[tabbar.viewControllers objectAtIndex:0]).userID = self.uidField.text;
+            [self presentViewController:tabbar animated:YES completion:nil];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User/Password pair doesn't exist!"
+                                                            message:@"Your username or password don't match our records."
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }
 }
 
