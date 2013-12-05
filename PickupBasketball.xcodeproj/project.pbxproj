@@ -10,6 +10,9 @@
 		AB68176C184D622600BE2F77 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB68176B184D622600BE2F77 /* SignUpViewController.m */; };
 		AB68176F184D623B00BE2F77 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB68176E184D623B00BE2F77 /* SignInViewController.m */; };
 		AB72F1A718500E3600B691FC /* LoggedInUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB72F1A618500E3600B691FC /* LoggedInUser.m */; };
+		AB72F1B0185014FF00B691FC /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = AB72F1AA185014FF00B691FC /* CJSONDeserializer.m */; };
+		AB72F1B1185014FF00B691FC /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = AB72F1AC185014FF00B691FC /* CJSONSerializer.m */; };
+		AB72F1B2185014FF00B691FC /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = AB72F1AF185014FF00B691FC /* NSDictionary_JSONExtensions.m */; };
 		EC173ECF184D2CBF00CE7D24 /* GameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC173ECE184D2CBF00CE7D24 /* GameDetailViewController.m */; };
 		EC173ED2184DA4F800CE7D24 /* MyGamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC173ED1184DA4F800CE7D24 /* MyGamesViewController.m */; };
 		ECD6C3A4184EF9180005AE94 /* MyGameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECD6C3A3184EF9180005AE94 /* MyGameDetailViewController.m */; };
@@ -49,6 +52,13 @@
 		AB68176E184D623B00BE2F77 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		AB72F1A518500E3600B691FC /* LoggedInUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggedInUser.h; sourceTree = "<group>"; };
 		AB72F1A618500E3600B691FC /* LoggedInUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoggedInUser.m; sourceTree = "<group>"; };
+		AB72F1A9185014FF00B691FC /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		AB72F1AA185014FF00B691FC /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		AB72F1AB185014FF00B691FC /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		AB72F1AC185014FF00B691FC /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		AB72F1AD185014FF00B691FC /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		AB72F1AE185014FF00B691FC /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		AB72F1AF185014FF00B691FC /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
 		EC173ECD184D2CBF00CE7D24 /* GameDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameDetailViewController.h; sourceTree = "<group>"; };
 		EC173ECE184D2CBF00CE7D24 /* GameDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameDetailViewController.m; sourceTree = "<group>"; };
 		EC173ED0184DA4F800CE7D24 /* MyGamesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGamesViewController.h; sourceTree = "<group>"; };
@@ -105,6 +115,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB72F1A8185014FF00B691FC /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				AB72F1A9185014FF00B691FC /* CJSONDeserializer.h */,
+				AB72F1AA185014FF00B691FC /* CJSONDeserializer.m */,
+				AB72F1AB185014FF00B691FC /* CJSONSerializer.h */,
+				AB72F1AC185014FF00B691FC /* CJSONSerializer.m */,
+				AB72F1AD185014FF00B691FC /* JSONRepresentation.h */,
+				AB72F1AE185014FF00B691FC /* NSDictionary_JSONExtensions.h */,
+				AB72F1AF185014FF00B691FC /* NSDictionary_JSONExtensions.m */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		ECE0923D181A142C00F1995B = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +174,7 @@
 				ECE09262181A142C00F1995B /* CreateGameViewController.m */,
 				ECE09264181A142C00F1995B /* SearchGameViewController.h */,
 				ECE09265181A142C00F1995B /* SearchGameViewController.m */,
+				AB72F1A8185014FF00B691FC /* Source */,
 				EC173ECD184D2CBF00CE7D24 /* GameDetailViewController.h */,
 				EC173ECE184D2CBF00CE7D24 /* GameDetailViewController.m */,
 				EC173ED0184DA4F800CE7D24 /* MyGamesViewController.h */,
@@ -299,9 +324,12 @@
 				AB68176C184D622600BE2F77 /* SignUpViewController.m in Sources */,
 				EC173ED2184DA4F800CE7D24 /* MyGamesViewController.m in Sources */,
 				AB72F1A718500E3600B691FC /* LoggedInUser.m in Sources */,
+				AB72F1B2185014FF00B691FC /* NSDictionary_JSONExtensions.m in Sources */,
+				AB72F1B0185014FF00B691FC /* CJSONDeserializer.m in Sources */,
 				ECD6C3A7184FD8AC0005AE94 /* Game.m in Sources */,
 				ECE09263181A142C00F1995B /* CreateGameViewController.m in Sources */,
 				ECD6C3A4184EF9180005AE94 /* MyGameDetailViewController.m in Sources */,
+				AB72F1B1185014FF00B691FC /* CJSONSerializer.m in Sources */,
 				EC173ECF184D2CBF00CE7D24 /* GameDetailViewController.m in Sources */,
 				ECE09256181A142C00F1995B /* main.m in Sources */,
 			);

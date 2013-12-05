@@ -10,6 +10,7 @@
 #import "MyGameDetailViewController.h"
 #import "Game.h"
 #import "LoggedInUser.h"
+#import "CJSONDeserializer.h"
 
 
 @interface MyGamesViewController ()
@@ -57,13 +58,16 @@
     
     NSError *error=nil;
     
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict
+    NSData* sendData = [NSJSONSerialization dataWithJSONObject:postDict
                                                        options:NSJSONWritingPrettyPrinted error:&error];
     
     
-    [theRequest setHTTPBody:jsonData];
-    NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
-    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    [theRequest setHTTPBody:sendData];
+ 
+    NSError *requestError;
+    NSURLResponse *urlResponse = nil;
+    NSData *response = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&urlResponse error:&requestError];
+    NSString *returnString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 
     if ([returnString isEqualToString:@"True"]) {
         NSLog(@"success!");
@@ -71,33 +75,50 @@
     } else {
     
     }
-
+    
+    NSError *theError = nil;
+    NSArray* jsonData = [[CJSONDeserializer deserializer] deserialize:response error:&theError];
+    NSMutableArray *allGames = [NSMutableArray array];
+    
+    for (NSArray* object in jsonData) {
+        Game *g1 = [[Game alloc] init];
+        g1.id = 0;
+        g1.numPlayers = 3;
+        g1.location = [object objectAtIndex:1];
+        NSString *str =[object objectAtIndex:2];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSDate *date = [formatter dateFromString:str];
+        g1.time = date;
+        [allGames addObject:g1];
+    }
+    games = [NSArray arrayWithArray:allGames];
 
     //Seeding some games
-    Game *g1 = [[Game alloc] init];
-    g1.id = 0;
-    g1.numPlayers = 5;
-    g1.location = @"Wilson";
-    NSString *str =@"12/4/2013 09:25 PM";
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"MM/dd/yyyy HH:mm a"];
-    NSDate *date = [formatter dateFromString:str];
-    g1.time = date;
-    
-    Game *g2 = [[Game alloc] init];
-    g2.id = 1;
-    g2.numPlayers = 7;
-    g2.location = @"Brodie";
-    NSString *str2 =@"12/5/2013 07:17 PM";
-    [formatter setDateFormat:@"MM/dd/yyyy HH:mm a"];
-    NSDate *date2 = [formatter dateFromString:str2];
-    g2.time = date2;
-    
-    NSMutableArray *allGames = [NSMutableArray array];
-    [allGames addObject:g1];
-    [allGames addObject:g2];
-    games = [NSArray arrayWithArray:allGames];
-    
+//    Game *g1 = [[Game alloc] init];
+//    g1.id = 0;
+//    g1.numPlayers = 5;
+//    g1.location = @"Wilson";
+//    NSString *str =@"12/4/2013 09:25 PM";
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//    [formatter setDateFormat:@"MM/dd/yyyy HH:mm a"];
+//    NSDate *date = [formatter dateFromString:str];
+//    g1.time = date;
+//    
+//    Game *g2 = [[Game alloc] init];
+//    g2.id = 1;
+//    g2.numPlayers = 7;
+//    g2.location = @"Brodie";
+//    NSString *str2 =@"12/5/2013 07:17 PM";
+//    [formatter setDateFormat:@"MM/dd/yyyy HH:mm a"];
+//    NSDate *date2 = [formatter dateFromString:str2];
+//    g2.time = date2;
+//    
+//    NSMutableArray *allGames = [NSMutableArray array];
+//    [allGames addObject:g1];
+//    [allGames addObject:g2];
+//    games = [NSArray arrayWithArray:allGames];
+//    
     
     NSDate *today = [NSDate date];
     NSDate *pickerDate = [today dateByAddingTimeInterval:10];

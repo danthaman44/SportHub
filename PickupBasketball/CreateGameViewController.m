@@ -80,7 +80,7 @@
     
     [theRequest setHTTPMethod:@"POST"];
     
-    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:self.userID, @"Username", date, @"Time", location, @"Location", sport, @"Sport", private, @"Private",  nil];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:[LoggedInUser getInstance].username, @"Username", date, @"Time", location, @"Location", sport, @"Sport", private, @"Private",  nil];
     NSError *error=nil;
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict options:NSJSONWritingPrettyPrinted error:&error];
     [theRequest setHTTPBody:jsonData];
