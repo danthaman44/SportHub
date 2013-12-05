@@ -46,11 +46,24 @@
     NSLog(@"response: ");
     NSLog(responseBody);
     
+    
+    NSArray *jsonArray=[NSJSONSerialization JSONObjectWithData:response options:0 error:nil];
+    for (int i =0; i < [jsonArray count]; i++ ) {
+        NSArray *gameInfo = [jsonArray objectAtIndex:i];
+        for (int k =0; k < [gameInfo count]; i++ ) {
+            NSLog([gameInfo objectAtIndex:i]);
+        }
+        
+    }
+
+
+    
+
     //==============================================================================
     //parsing JSON data
-    
-    NSError *localError = nil;
-    NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:response options:0 error:&localError];
+//    
+//    NSError *localError = nil;
+//    NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:response options:0 error:&localError];
     
 //    if (localError != nil) {
 //        *error = localError;

@@ -158,10 +158,10 @@
 				ECD6C3A3184EF9180005AE94 /* MyGameDetailViewController.m */,
 				ECD6C3A5184FD8AB0005AE94 /* Game.h */,
 				ECD6C3A6184FD8AC0005AE94 /* Game.m */,
-				ECE09267181A142C00F1995B /* Images.xcassets */,
-				ECE09250181A142C00F1995B /* Supporting Files */,
 				AB72F1A518500E3600B691FC /* LoggedInUser.h */,
 				AB72F1A618500E3600B691FC /* LoggedInUser.m */,
+				ECE09267181A142C00F1995B /* Images.xcassets */,
+				ECE09250181A142C00F1995B /* Supporting Files */,
 			);
 			path = PickupBasketball;
 			sourceTree = "<group>";
