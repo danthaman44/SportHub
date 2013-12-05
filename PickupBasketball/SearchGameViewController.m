@@ -9,6 +9,7 @@
 #import "SearchGameViewController.h"
 #import "GameDetailViewController.h"
 #import "Game.h"
+#import "CJSONDeserializer.h"
 
 @interface SearchGameViewController ()
 
@@ -23,7 +24,6 @@
     NSArray *searchResults;
     NSArray *games;
 }
-@synthesize mainTableView;
 
 - (void)viewDidLoad
 {
@@ -38,17 +38,41 @@
                                                            cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                        timeoutInterval:10];
     
-   [request setHTTPMethod: @"GET"];
+   [request setHTTPMethod: @"POST"];
     NSError *requestError;
     NSURLResponse *urlResponse = nil;
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
     NSString *responseBody = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
+    //NSError *e;
+    //NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseBody options:nil error:&e];
+    //for(id key in dict) {
+     //   NSLog(@"key=%@ value=%@", key, [dict objectForKey:key]);
+   // }
+    NSError *theError = nil;
+    NSArray* jsonData = [[CJSONDeserializer deserializer] deserialize:response error:&theError];
+    NSMutableArray *allGames = [NSMutableArray array];
+
+    for (NSArray* object in jsonData) {
+        Game *g1 = [[Game alloc] init];
+        g1.id = 0;
+        g1.numPlayers = 3;
+        g1.location = [object objectAtIndex:1];
+        NSString *str =[object objectAtIndex:2];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSDate *date = [formatter dateFromString:str];
+        g1.time = date;
+        [allGames addObject:g1];
+        
+    }
+    games = [NSArray arrayWithArray:allGames];
+   // NSLog(@"%@", jsonData);
     NSLog(@"response: ");
     NSLog(responseBody);
     
     //==============================================================================
     //parsing JSON data
-    
+   /*
     NSError *localError = nil;
     NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:response options:0 error:&localError];
     
@@ -80,13 +104,13 @@
     
     
     
+    */
     
     
     
     
     
-    
-    
+    /*
     //Seeding some games
     Game *g1 = [[Game alloc] init];
     g1.id = 0;
@@ -111,7 +135,7 @@
     [allGames addObject:g1];
     [allGames addObject:g2];
     games = [NSArray arrayWithArray:allGames];
-
+*/
 }
 
 - (void)didReceiveMemoryWarning

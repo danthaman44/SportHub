@@ -23,7 +23,6 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *sportPicker;
 @property (strong, nonatomic) NSArray *locations;
 @property (strong, nonatomic) IBOutlet UISwitch *togglePrivate;
-@property (strong, nonatomic) NSString* userID;
 @property (strong, nonatomic) NSArray *sports;
 
 -(IBAction)displayGameInfo:(id)sender;

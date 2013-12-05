@@ -59,7 +59,6 @@
             [LoggedInUser getInstance].username = self.uidField.text;
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
             UITabBarController *tabbar = (UITabBarController*)[storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
-            ((CreateGameViewController*)[tabbar.viewControllers objectAtIndex:0]).userID = self.uidField.text;
             [self presentViewController:tabbar animated:YES completion:nil];
         }
         else {
