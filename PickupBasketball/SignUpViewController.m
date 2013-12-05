@@ -40,16 +40,16 @@
                 
                 NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict
                                                                    options:NSJSONWritingPrettyPrinted error:&error];
-                NSString* blah = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                //NSString* blah = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
                 //NSLog(@"%@", blah);
                 
                 
                 [theRequest setHTTPBody:jsonData];
                 NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
                 NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-                NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+                //NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
                 //NSLog(@"%@", returnString);
-                if (con && [returnString isEqualToString:@"True"]) {
+                if ([returnString isEqualToString:@"True"]) {
                     NSLog(@"success!");
                     [self dismissViewControllerAnimated:YES completion:nil];
                 } else { 

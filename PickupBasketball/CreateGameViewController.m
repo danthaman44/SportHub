@@ -25,6 +25,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.locations  = [[NSArray alloc] initWithObjects:@"Wilson Gym",@"Brodie Gym",@"Central Campus Courts", nil];
+    self.sports = [[NSArray alloc] initWithObjects:@"Basketball", @"Curling", @"Underwater Basket Weaving", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,17 +48,30 @@
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [self.locations objectAtIndex:row];
+    if(pickerView == self.locationPicker) {
+        return [self.locations objectAtIndex:row];
+    }
+    else {
+        return [self.sports objectAtIndex:row];
+    }
 }
 
 -(IBAction)displayGameInfo:(id)sender {
-	NSDate * selected = [datePicker date];
-	NSString * date = [selected description];
+	NSDate * selected = [self.datePicker date];
+	NSString * date = [selected descriptionWithLocale:[NSLocale currentLocale]];
+    date = [date substringToIndex:[date length]-22];
     NSLog(@"%@",date);
     
-    NSInteger row = [locationPicker selectedRowInComponent:0];
-    NSString * location = [locations objectAtIndex:row];
+    NSInteger row = [self.locationPicker selectedRowInComponent:0];
+    NSString * location = [self.locations objectAtIndex:row];
     NSLog(@"%@", location);
+    
+    NSInteger rowTwo = [self.sportPicker selectedRowInComponent:0];
+    NSString * sport = [self.sports objectAtIndex:rowTwo];
+    
+    NSString * private = self.togglePrivate.on ? @"True" : @"False";
+    
+    
     
 //    [self sendJSON:date withArg2:location ];
     NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/create_game"];
@@ -65,14 +79,14 @@
     
     [theRequest setHTTPMethod:@"POST"];
     
-    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:self.userID, @"Username", date, @"Date", location, @"Location", sport, @"Sport", self.togglePrivate.  nil];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:self.userID, @"Username", date, @"Time", location, @"Location", sport, @"Sport", private, @"Private",  nil];
     NSError *error=nil;
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict options:NSJSONWritingPrettyPrinted error:&error];
     [theRequest setHTTPBody:jsonData];
     NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-    NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-    if (con) {
+    //NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+    if (returnData) {
         NSLog(@"success! %@", returnString);
     } else {
         
