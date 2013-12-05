@@ -79,8 +79,21 @@
         NSLog(@"%@", g1.players);
         
     }
+<<<<<<< HEAD
     NSLog(@"response: ");
     NSLog(responseBody);
+=======
+
+//    NSArray *jsonArray=[NSJSONSerialization JSONObjectWithData:response options:0 error:nil];
+//    for (int i =0; i < [jsonArray count]; i++ ) {
+//        NSArray *gameInfo = [jsonArray objectAtIndex:i];
+//        for (int k =0; k < [gameInfo count]; i++ ) {
+//            NSLog([gameInfo objectAtIndex:i]);
+//        }
+//        
+//    }
+
+>>>>>>> 43a4e1ccdb9e6e166df046491cc03c58bc9f0f0e
 }
 
 - (void)didReceiveMemoryWarning

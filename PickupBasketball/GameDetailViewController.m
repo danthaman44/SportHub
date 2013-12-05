@@ -7,8 +7,12 @@
 //
 
 #import "GameDetailViewController.h"
+#import "LoggedInUser.h"
 
-@interface GameDetailViewController ()
+@interface GameDetailViewController () {
+    LoggedInUser *currentUser;
+    NSString *userName;
+}
 
 @end
 
@@ -35,6 +39,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 	// Do any additional setup after loading the view.
+    
+    //Get logged in user
+    userName = [LoggedInUser getInstance].username;
+    
     //Show the game time
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
@@ -58,6 +66,32 @@
 
 -(IBAction)joinGame {
     NSLog(@"Button pressed");
+    NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/join_game"];
+    NSMutableURLRequest *theRequest=[NSMutableURLRequest
+                                     requestWithURL:[NSURL URLWithString:
+                                                     queryString]
+                                     cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                     timeoutInterval:60.0];
+    [theRequest setHTTPMethod:@"POST"];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:userName, @"Username", gameId, @"GameId", nil];
+    
+    NSError *error=nil;
+    
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict
+                                                       options:NSJSONWritingPrettyPrinted error:&error];
+    
+    
+    [theRequest setHTTPBody:jsonData];
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
+    NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+    
+    if ([returnString isEqualToString:@"True"]) {
+        NSLog(@"success!");
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        
+    }
+
 }
 
 @end
