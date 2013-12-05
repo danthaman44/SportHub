@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoggedInUser.h"
 
 @interface SignInViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *uidField;
 @property (weak, nonatomic) IBOutlet UITextField *passField;
+@property (strong, nonatomic) LoggedInUser* user;
 
 -(IBAction)selectAndMove:(id)sender;
 -(IBAction) resignFirst:(id)sender;

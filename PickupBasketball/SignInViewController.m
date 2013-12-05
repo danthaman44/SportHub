@@ -56,6 +56,7 @@
         //NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
         //NSLog(@"%@", returnString);
         if([returnString isEqualToString:@"True"]) {
+            [LoggedInUser getInstance].username = self.uidField.text;
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
             UITabBarController *tabbar = (UITabBarController*)[storyboard instantiateViewControllerWithIdentifier:@"tabbar"];
             ((CreateGameViewController*)[tabbar.viewControllers objectAtIndex:0]).userID = self.uidField.text;
@@ -79,6 +80,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [LoggedInUser getInstance];
 	// Do any additional setup after loading the view.
 }
 
