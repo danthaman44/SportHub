@@ -41,10 +41,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    //get current user
-    userName = [LoggedInUser getInstance].username;
-    
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     //Send request to get games
     
     NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/see_my_games"];
@@ -54,6 +55,7 @@
                                      cachePolicy:NSURLRequestUseProtocolCachePolicy
                                      timeoutInterval:60.0];
     [theRequest setHTTPMethod:@"POST"];
+    userName = [LoggedInUser getInstance].username;
     NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:userName, @"Username", nil];
     
     NSError *error=nil;
@@ -63,17 +65,17 @@
     
     
     [theRequest setHTTPBody:sendData];
- 
+    
     NSError *requestError;
     NSURLResponse *urlResponse = nil;
     NSData *response = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:&urlResponse error:&requestError];
     NSString *returnString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-
+    
     if ([returnString isEqualToString:@"True"]) {
         NSLog(@"success!");
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
-    
+        
     }
     
     NSError *theError = nil;
@@ -93,35 +95,29 @@
         [allGames addObject:g1];
     }
     games = [NSArray arrayWithArray:allGames];
-
+    
     // Schedule the notifications
     
-    for (Game *g in games) {
-        NSDate *time = g.time;
-        NSDate *pickerDate = [time dateByAddingTimeInterval:-300];
-        
-        //Just printing the time for debugging purposes.
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-        NSString *fTime = [dateFormatter stringFromDate:pickerDate];
-        NSLog(@"Alert will fire at:%@",fTime);
-    
-        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-
-        localNotification.fireDate = pickerDate;
-        localNotification.alertBody = @"You have a game in hour";
-        localNotification.alertAction = @"You have a game in hour";
-        localNotification.timeZone = [NSTimeZone defaultTimeZone];
-        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication]applicationIconBadgeNumber] + 1;
-    
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    }
-    
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
+//    for (Game *g in games) {
+//        NSDate *time = g.time;
+//        NSDate *pickerDate = [time dateByAddingTimeInterval:-300];
+//        
+//        //Just printing the time for debugging purposes.
+//        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+//        NSString *fTime = [dateFormatter stringFromDate:pickerDate];
+//        NSLog(@"Alert will fire at:%@",fTime);
+//        
+//        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+//        
+//        localNotification.fireDate = pickerDate;
+//        localNotification.alertBody = @"You have a game in hour";
+//        localNotification.alertAction = @"You have a game in hour";
+//        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+//        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication]applicationIconBadgeNumber] + 1;
+//        
+//        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+//    }
     
 }
 

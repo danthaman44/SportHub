@@ -15,4 +15,5 @@
 @property (assign, nonatomic) NSInteger id;
 @property (assign, nonatomic) NSInteger numPlayers;
 @property (assign) bool isPrivate;
+@property (strong, nonatomic) NSArray *players;
 @end

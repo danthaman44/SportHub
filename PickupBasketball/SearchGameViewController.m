@@ -28,13 +28,16 @@
 //    playerCounts = [NSArray arrayWithObjects:@"5", @"9", @"4", @"3", nil];
     _games = [[NSMutableArray alloc] init];
     _privateGames = [[NSMutableArray alloc] init];
+
+}
+- (void)viewDidAppear:(BOOL)animated {
     _searchResults = [[NSArray alloc] init];
     NSString *serverAddress = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/see_games"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverAddress]
                                                            cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                                        timeoutInterval:10];
     
-   [request setHTTPMethod: @"POST"];
+    [request setHTTPMethod: @"POST"];
     NSError *requestError;
     NSURLResponse *urlResponse = nil;
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
@@ -42,14 +45,19 @@
     //NSError *e;
     //NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseBody options:nil error:&e];
     //for(id key in dict) {
-     //   NSLog(@"key=%@ value=%@", key, [dict objectForKey:key]);
-   // }
+    //   NSLog(@"key=%@ value=%@", key, [dict objectForKey:key]);
+    // }
     NSError *theError = nil;
     NSArray* jsonData = [[CJSONDeserializer deserializer] deserialize:response error:&theError];
-  //  NSMutableArray *allGames = [NSMutableArray array];
-
+    //  NSMutableArray *allGames = [NSMutableArray array];
+    
     for (NSArray* object in jsonData) {
         Game *g1 = [[Game alloc] init];
+        NSMutableArray *playersTemp = [[NSMutableArray alloc] init];
+        for (NSString* player in [object objectAtIndex:7]) {
+            [playersTemp addObject:player];
+        }
+        g1.players = playersTemp;
         g1.id = [object objectAtIndex:6];
         g1.numPlayers = 3;
         g1.location = [object objectAtIndex:1];
@@ -68,18 +76,9 @@
         else {
             [self.games addObject:g1];
         }
+        //NSLog(@"%@", g1.players);
         
     }
-
-//    NSArray *jsonArray=[NSJSONSerialization JSONObjectWithData:response options:0 error:nil];
-//    for (int i =0; i < [jsonArray count]; i++ ) {
-//        NSArray *gameInfo = [jsonArray objectAtIndex:i];
-//        for (int k =0; k < [gameInfo count]; i++ ) {
-//            NSLog([gameInfo objectAtIndex:i]);
-//        }
-//        
-//    }
-
 }
 
 - (void)didReceiveMemoryWarning
