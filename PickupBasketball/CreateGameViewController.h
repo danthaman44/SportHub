@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoggedInUser.h"
 
 @interface CreateGameViewController : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate> {
     /*UIDatePicker *datePicker;

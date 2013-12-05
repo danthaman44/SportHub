@@ -26,6 +26,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.locations  = [[NSArray alloc] initWithObjects:@"Wilson Gym",@"Brodie Gym",@"Central Campus Courts", nil];
     self.sports = [[NSArray alloc] initWithObjects:@"Basketball", @"Curling", @"Underwater Basket Weaving", nil];
+    self.datePicker.minimumDate = [[ NSDate alloc ] initWithTimeIntervalSinceNow: (NSTimeInterval) 0 ];
 }
 
 - (void)didReceiveMemoryWarning
