@@ -94,54 +94,34 @@
     }
     games = [NSArray arrayWithArray:allGames];
 
-    //Seeding some games
-//    Game *g1 = [[Game alloc] init];
-//    g1.id = 0;
-//    g1.numPlayers = 5;
-//    g1.location = @"Wilson";
-//    NSString *str =@"12/4/2013 09:25 PM";
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"MM/dd/yyyy HH:mm a"];
-//    NSDate *date = [formatter dateFromString:str];
-//    g1.time = date;
-//    
-//    Game *g2 = [[Game alloc] init];
-//    g2.id = 1;
-//    g2.numPlayers = 7;
-//    g2.location = @"Brodie";
-//    NSString *str2 =@"12/5/2013 07:17 PM";
-//    [formatter setDateFormat:@"MM/dd/yyyy HH:mm a"];
-//    NSDate *date2 = [formatter dateFromString:str2];
-//    g2.time = date2;
-//    
-//    NSMutableArray *allGames = [NSMutableArray array];
-//    [allGames addObject:g1];
-//    [allGames addObject:g2];
-//    games = [NSArray arrayWithArray:allGames];
-//    
+    // Schedule the notifications
     
-    NSDate *today = [NSDate date];
-    NSDate *pickerDate = [today dateByAddingTimeInterval:10];
+    for (Game *g in games) {
+        NSDate *time = g.time;
+        NSDate *pickerDate = [time dateByAddingTimeInterval:-300];
+        
+        //Just printing the time for debugging purposes.
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+        NSString *fTime = [dateFormatter stringFromDate:pickerDate];
+        NSLog(@"Alert will fire at:%@",fTime);
     
-    //Just printing the time for debugging purposes.
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    NSString *currentTime = [dateFormatter stringFromDate:today];
-    NSLog(@"User's current time in their preference format:%@",currentTime);
-    
-    
-    
-    // Schedule the notification
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
 
-    localNotification.fireDate = pickerDate;
-    localNotification.alertBody = @"You have a game in hour";
-    localNotification.alertAction = @"You have a game in hour";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication] applicationIconBadgeNumber] + 1;
+        localNotification.fireDate = pickerDate;
+        localNotification.alertBody = @"You have a game in hour";
+        localNotification.alertAction = @"You have a game in hour";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication]applicationIconBadgeNumber] + 1;
     
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    }
     
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     
 }
 

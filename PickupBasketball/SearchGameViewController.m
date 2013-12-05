@@ -70,12 +70,7 @@
         }
         
     }
-  //  games = [NSArray arrayWithArray:allGames];
-   // NSLog(@"%@", jsonData);
-    NSLog(@"response: ");
-    NSLog(responseBody);
-    
-    
+
 //    NSArray *jsonArray=[NSJSONSerialization JSONObjectWithData:response options:0 error:nil];
 //    for (int i =0; i < [jsonArray count]; i++ ) {
 //        NSArray *gameInfo = [jsonArray objectAtIndex:i];
