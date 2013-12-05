@@ -216,6 +216,18 @@
     }
 }
 
+-(IBAction)privateGameSearch:(id)sender {
+    for(Game* game in self.privateGames) {
+        if(game.id == [self.privateSearch.text intValue]) {
+            
+        }
+    }
+}
+
+-(IBAction)resignFirst:(id)sender {
+    [sender resignFirstResponder];
+}
+
 
 
 @end

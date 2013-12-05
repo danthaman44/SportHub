@@ -16,4 +16,7 @@
 @property (strong, nonatomic) NSMutableArray* privateGames;
 @property (strong, nonatomic) NSArray* searchResults;
 
+-(IBAction)privateGameSearch:(id)sender;
+-(IBAction)resignFirst:(id)sender;
+
 @end
