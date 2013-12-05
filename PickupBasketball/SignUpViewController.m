@@ -40,22 +40,34 @@
                 
                 NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict
                                                                    options:NSJSONWritingPrettyPrinted error:&error];
-                NSString* blah = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-                NSLog(@"%@", blah);
+                //NSString* blah = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                //NSLog(@"%@", blah);
                 
                 
                 [theRequest setHTTPBody:jsonData];
                 NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
                 NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-                NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
-                NSLog(@"%@", returnString);
-                if (con && [returnString isEqualToString:@"True"]) {
-                    
-                    NSLog(@"success! %@", returnString);
+                //NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+                //NSLog(@"%@", returnString);
+                if ([returnString isEqualToString:@"True"]) {
+                    NSLog(@"success!");
+                    [self dismissViewControllerAnimated:YES completion:nil];
                 } else { 
-                    //something bad happened
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"User ID in use!"
+                                                                    message:@"This Username is in use. Please choose another."
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
                 }
-                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Passwords don't match"
+                                                                message:@"Your passwords don't match. Please retype them."
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
             }
         }
 }
