@@ -12,8 +12,8 @@
 
 @property (nonatomic, strong) IBOutlet UITableView  *mainTableView;
 @property (weak, nonatomic) IBOutlet UITextField *privateSearch;
-@property (strong, nonatomic) NSMutableArray* games;
-@property (strong, nonatomic) NSMutableArray* privateGames;
+@property (strong, nonatomic) NSArray* games;
+@property (strong, nonatomic) NSArray* privateGames;
 @property (strong, nonatomic) NSArray* searchResults;
 
 -(IBAction)privateGameSearch:(id)sender;

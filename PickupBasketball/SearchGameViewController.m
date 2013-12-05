@@ -10,6 +10,7 @@
 #import "GameDetailViewController.h"
 #import "Game.h"
 #import "CJSONDeserializer.h"
+#import "LoggedInUser.h"
 
 @interface SearchGameViewController ()
 
@@ -26,12 +27,12 @@
 //    locations = [NSArray arrayWithObjects:@"Wilson", @"Brodie", @"Central", @"Brodie",nil];
 //    times = [NSArray arrayWithObjects:@"5:00", @"6:00", @"7:00", @"8:00", nil];
 //    playerCounts = [NSArray arrayWithObjects:@"5", @"9", @"4", @"3", nil];
-    _games = [[NSMutableArray alloc] init];
-    _privateGames = [[NSMutableArray alloc] init];
+    _games = [[NSArray alloc] init];
+    _privateGames = [[NSArray alloc] init];
+    _searchResults = [[NSArray alloc] init];
 
 }
 - (void)viewDidAppear:(BOOL)animated {
-    _searchResults = [[NSArray alloc] init];
     NSString *serverAddress = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/see_games"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverAddress]
                                                            cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
@@ -49,8 +50,8 @@
     // }
     NSError *theError = nil;
     NSArray* jsonData = [[CJSONDeserializer deserializer] deserialize:response error:&theError];
-    //  NSMutableArray *allGames = [NSMutableArray array];
-    
+    NSMutableArray* tempGames = [[NSMutableArray alloc] init];
+    NSMutableArray* tempPrivateGames = [[NSMutableArray alloc] init];
     for (NSArray* object in jsonData) {
         Game *g1 = [[Game alloc] init];
         NSMutableArray *playersTemp = [[NSMutableArray alloc] init];
@@ -58,7 +59,7 @@
             [playersTemp addObject:player];
         }
         g1.players = playersTemp;
-        g1.id = [object objectAtIndex:6];
+        g1.id = [[object objectAtIndex:6] intValue];
         g1.numPlayers = 3;
         g1.location = [object objectAtIndex:1];
         NSString *str =[object objectAtIndex:2];
@@ -70,14 +71,22 @@
         g1.isPrivate = [object objectAtIndex:5];
         g1.numPlayers = [object objectAtIndex:4];
         
-        if(g1.isPrivate) {
-            [self.privateGames addObject:g1];
+        if([g1.isPrivate isEqualToString:@"True"]) {
+            [tempPrivateGames addObject:g1];
+            NSLog(@"private");
         }
         else {
-            [self.games addObject:g1];
+            [tempGames addObject:g1];
+            NSLog(@"public");
         }
-        NSLog(@"%@", g1.players);
-        
+    }
+    self.games = [NSArray arrayWithArray:tempGames];
+    self.privateGames = [NSArray arrayWithArray:tempPrivateGames];
+    [self.mainTableView reloadData];
+    
+    NSLog(@"%d", [self.games count]);
+    for(Game* g in self.games) {
+        NSLog(@"%@", g.sport);
     }
 }
 
@@ -87,12 +96,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Games";
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
+        NSLog(@"search");
         return [self.searchResults count];
-        
-    } else {
+    }
+    else {
+        NSLog(@"%d", [self.games count]);
         return [self.games count];
         
     }
@@ -101,7 +122,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *simpleTableIdentifier = @"GameCell";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
@@ -109,8 +129,10 @@
     }
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [self.searchResults objectAtIndex:indexPath.row];
-    } else {
+        cell.textLabel.text = ((Game*)[self.searchResults objectAtIndex:indexPath.row]).location;
+    }
+    else {
+        NSLog(@"cell");
         Game *g = [self.games objectAtIndex:indexPath.row];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
@@ -157,7 +179,31 @@
 -(IBAction)privateGameSearch:(id)sender {
     for(Game* game in self.privateGames) {
         if(game.id == [self.privateSearch.text intValue]) {
+            NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/join_game"];
+            NSMutableURLRequest *theRequest=[NSMutableURLRequest
+                                             requestWithURL:[NSURL URLWithString:
+                                                             queryString]
+                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                             timeoutInterval:60.0];
+            [theRequest setHTTPMethod:@"POST"];
+            NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:[LoggedInUser getInstance].username, @"Username", self.privateSearch.text, @"GameId", nil];
+            NSError *error=nil;
             
+            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict
+                                                               options:NSJSONWritingPrettyPrinted error:&error];
+            
+            
+            [theRequest setHTTPBody:jsonData];
+            NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
+            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
+            if([returnString isEqualToString:@"Success"]) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You've joined the game!"
+                                                                message:@"Aren't you special"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"OK"
+                                                      otherButtonTitles:nil];
+                [alert show];
+            }
         }
     }
 }

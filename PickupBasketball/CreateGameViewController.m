@@ -73,8 +73,6 @@
     NSString * private = self.togglePrivate.on ? @"True" : @"False";
     
     
-    
-//    [self sendJSON:date withArg2:location ];
     NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/create_game"];
     NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:[NSURL URLWithString:queryString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
     
