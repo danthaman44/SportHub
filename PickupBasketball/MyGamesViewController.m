@@ -84,15 +84,24 @@
     
     for (NSArray* object in jsonData) {
         Game *g1 = [[Game alloc] init];
-        g1.id = 0;
-        g1.numPlayers = 3;
+        NSMutableArray *playersTemp = [[NSMutableArray alloc] init];
+        for (NSString* player in [object objectAtIndex:7]) {
+            [playersTemp addObject:player];
+        }
+        g1.players = playersTemp;
+        g1.id = [object objectAtIndex:6];
         g1.location = [object objectAtIndex:1];
         NSString *str =[object objectAtIndex:2];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
         NSDate *date = [formatter dateFromString:str];
         g1.time = date;
+        g1.sport = [object objectAtIndex:3];
+        g1.isPrivate = [object objectAtIndex:5];
+        g1.numPlayers = [object objectAtIndex:4];
+        
         [allGames addObject:g1];
+        
     }
     games = [NSArray arrayWithArray:allGames];
     
@@ -160,6 +169,7 @@
         destViewController.location = main.location;
         destViewController.time = main.time;
         destViewController.numPlayers = main.numPlayers;
+        destViewController.sport = main.sport;
     }
 }
 
