@@ -60,7 +60,7 @@
                 }
             }
             g1.players = playersTemp;
-            g1.id = [[object objectAtIndex:6] intValue];
+            g1.gid = [[object objectAtIndex:6] intValue];
             g1.numPlayers = 3;
             g1.location = [object objectAtIndex:1];
             NSString *str =[object objectAtIndex:2];
@@ -81,7 +81,7 @@
 
 -(IBAction)privateGameSearch:(id)sender {
     for(Game* game in self.privateGames) {
-        if(game.id == [self.privateSearch.text intValue]) {
+        if(game.gid == [self.privateSearch.text intValue]) {
             NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/join_game"];
             NSMutableURLRequest *theRequest=[NSMutableURLRequest
                                              requestWithURL:[NSURL URLWithString:
