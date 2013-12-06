@@ -95,7 +95,7 @@
         //something bad happened
     }
     [self scheduleNotification: selected];
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
@@ -108,8 +108,8 @@
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
     localNotification.fireDate = pickerDate;
-    localNotification.alertBody = @"You have a game in hour";
-    localNotification.alertAction = @"You have a game in hour";
+    localNotification.alertBody = @"You have a game soon";
+    localNotification.alertAction = @"You have a game soon";
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication]applicationIconBadgeNumber] + 1;
     
