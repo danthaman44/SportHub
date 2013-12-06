@@ -20,10 +20,10 @@
 @property (strong, nonatomic) IBOutlet UIDatePicker *datePicker;
 @property (strong, nonatomic) IBOutlet UIButton *createButton;
 @property (strong, nonatomic) IBOutlet UIPickerView *locationPicker;
-@property (weak, nonatomic) IBOutlet UIPickerView *sportPicker;
 @property (strong, nonatomic) NSArray *locations;
 @property (strong, nonatomic) IBOutlet UISwitch *togglePrivate;
 @property (strong, nonatomic) NSArray *sports;
+@property (strong, nonatomic) NSString* sport;
 
 -(IBAction)displayGameInfo:(id)sender;
 
