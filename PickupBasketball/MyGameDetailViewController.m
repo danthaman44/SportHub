@@ -58,7 +58,6 @@
 
 -(IBAction)leaveGame {
     NSString *userName = [LoggedInUser getInstance].username;
-    NSLog(@"Button pressed");
     NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/leave_game"];
     NSMutableURLRequest *theRequest=[NSMutableURLRequest
                                      requestWithURL:[NSURL URLWithString:
@@ -67,9 +66,6 @@
                                      timeoutInterval:60.0];
     [theRequest setHTTPMethod:@"POST"];
     
-    NSLog(userName);
-    NSLog(@"Gameid");
-    NSLog(@"%d", gameId);
     NSString *IdAsString = [NSString stringWithFormat:@"%d", gameId];
     
     NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys: userName, @"Username", IdAsString, @"GameId", nil];

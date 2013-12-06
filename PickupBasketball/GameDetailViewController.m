@@ -72,8 +72,9 @@
     [theRequest setHTTPMethod:@"POST"];
     
     
+    NSString *IdAsString = [NSString stringWithFormat:@"%d", gameId];
     
-    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:userName, @"Username", gameId, @"GameId", nil];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:userName, @"Username", IdAsString, @"GameId", nil];
     
     NSError *error=nil;
     
@@ -91,6 +92,7 @@
     } else {
         
     }
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 

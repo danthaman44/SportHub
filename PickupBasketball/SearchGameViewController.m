@@ -71,7 +71,7 @@
             g1.time = date;
             g1.sport = [object objectAtIndex:3];
             g1.isPrivate = [object objectAtIndex:5];
-            g1.numPlayers = [object objectAtIndex:4];
+            g1.numPlayers = [[object objectAtIndex:4] intValue];
             
             if([g1.isPrivate isEqualToString:@"True"]) {
                 [tempPrivateGames addObject:g1];
