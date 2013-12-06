@@ -109,6 +109,7 @@
     next.time = self.selectedGame.time;
     next.location =  self.selectedGame.location;
     next.numPlayers = self.selectedGame.numPlayers;
+    next.sport = self.selectedGame.sport;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -163,7 +164,7 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF.location contains[cd] %@",
+                                    predicateWithFormat:@"SELF.sport contains[cd] %@",
                                     searchText];
     
     self.searchResults = [self.games filteredArrayUsingPredicate:resultPredicate];

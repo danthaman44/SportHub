@@ -89,7 +89,7 @@
     NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
     //NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
     if (returnData) {
-        NSLog(@"success! %@", returnString);
+        [self.tabBarController setSelectedIndex:1];
     } else {
         
         //something bad happened
