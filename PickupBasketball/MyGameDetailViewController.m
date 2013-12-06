@@ -68,7 +68,7 @@
     [theRequest setHTTPMethod:@"POST"];
     NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys: userName, @"Username", gameId, @"GameId", nil];
     NSLog(userName);
-    NSLog(@"%d", gameId);
+    NSLog(gameId);
     
     NSError *error=nil;
     
