@@ -55,6 +55,7 @@
         NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
         //NSURLConnection *con = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
         //NSLog(@"%@", returnString);
+        //returnString = @"True";
         if([returnString isEqualToString:@"True"]) {
             [LoggedInUser getInstance].username = self.uidField.text;
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
