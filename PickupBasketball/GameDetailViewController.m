@@ -51,6 +51,7 @@
     //Show number of players
     NSString *temp = [NSString stringWithFormat:@"%d", numPlayers];
     numPlayersLabel.text = temp;
+    self.sportLabel.text = self.sport;
     
 }
 

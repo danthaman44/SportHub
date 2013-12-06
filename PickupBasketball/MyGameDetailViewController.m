@@ -47,6 +47,7 @@
     //Show number of players
     NSString *temp = [NSString stringWithFormat:@"%d", numPlayers];
     numPlayersLabel.text = temp;
+    self.sportLabel.text = self.sport;
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +66,9 @@
                                      cachePolicy:NSURLRequestUseProtocolCachePolicy
                                      timeoutInterval:60.0];
     [theRequest setHTTPMethod:@"POST"];
-    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:userName, @"Username", gameId, @"GameId", nil];
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys: userName, @"Username", gameId, @"GameId", nil];
+    NSLog(userName);
+    NSLog(gameId);
     
     NSError *error=nil;
     

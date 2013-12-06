@@ -51,7 +51,6 @@
     NSArray* jsonData = [[CJSONDeserializer deserializer] deserialize:response error:&theError];
     NSMutableArray* tempGames = [[NSMutableArray alloc] init];
     NSMutableArray* tempPrivateGames = [[NSMutableArray alloc] init];
-
     if ([jsonData count] > 0) {
         for (NSArray* object in jsonData) {
             Game *g1 = [[Game alloc] init];

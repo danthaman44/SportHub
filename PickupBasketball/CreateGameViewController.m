@@ -89,5 +89,30 @@
         
         //something bad happened
     }
+    [self scheduleNotification: selected];
+    
+}
+
+
+-(void) scheduleNotification:(NSDate *) time {
+    //Schedule the local notification
+    NSDate *pickerDate = [time dateByAddingTimeInterval:-300];
+    
+    //Just printing the time for debugging purposes.
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString *fTime = [dateFormatter stringFromDate:pickerDate];
+    NSLog(@"Alert will fire at:%@",fTime);
+    
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    
+    localNotification.fireDate = pickerDate;
+    localNotification.alertBody = @"You have a game in hour";
+    localNotification.alertAction = @"You have a game in hour";
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication]applicationIconBadgeNumber] + 1;
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+
 }
 @end

@@ -26,5 +26,6 @@
 @property (strong, nonatomic) NSString* sport;
 
 -(IBAction)displayGameInfo:(id)sender;
+-(void)scheduleNotification:(NSDate*)time;
 
 @end
