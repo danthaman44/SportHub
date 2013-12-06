@@ -71,7 +71,7 @@
             g1.time = date;
             g1.sport = [object objectAtIndex:3];
             g1.isPrivate = [object objectAtIndex:5];
-            g1.numPlayers = [object objectAtIndex:4];
+            g1.numPlayers = [[object objectAtIndex:4] intValue];
             
             if([g1.isPrivate isEqualToString:@"True"]) {
                 [tempPrivateGames addObject:g1];
@@ -177,42 +177,6 @@
                                                      selectedScopeButtonIndex]]];
     
     return YES;
-}
-
--(IBAction)privateGameSearch:(id)sender {
-    for(Game* game in self.privateGames) {
-        if(game.id == [self.privateSearch.text intValue]) {
-            NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/join_game"];
-            NSMutableURLRequest *theRequest=[NSMutableURLRequest
-                                             requestWithURL:[NSURL URLWithString:
-                                                             queryString]
-                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                             timeoutInterval:60.0];
-            [theRequest setHTTPMethod:@"POST"];
-            NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:[LoggedInUser getInstance].username, @"Username", self.privateSearch.text, @"GameId", nil];
-            NSError *error=nil;
-            
-            NSData* jsonData = [NSJSONSerialization dataWithJSONObject:postDict
-                                                               options:NSJSONWritingPrettyPrinted error:&error];
-            
-            
-            [theRequest setHTTPBody:jsonData];
-            NSData *returnData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
-            NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-            if([returnString isEqualToString:@"Success"]) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You've joined the game!"
-                                                                message:@"Aren't you special"
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
-        }
-    }
-}
-
--(IBAction)resignFirst:(id)sender {
-    [sender resignFirstResponder];
 }
 
 

@@ -12,7 +12,6 @@
 @interface SearchGameViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) IBOutlet UITableView  *mainTableView;
-@property (weak, nonatomic) IBOutlet UITextField *privateSearch;
 @property (strong, nonatomic) NSArray* games;
 @property (strong, nonatomic) NSArray* privateGames;
 @property (strong, nonatomic) NSArray* searchResults;
