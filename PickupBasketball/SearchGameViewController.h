@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Game.h"
 
 @interface SearchGameViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
@@ -15,6 +16,7 @@
 @property (strong, nonatomic) NSArray* games;
 @property (strong, nonatomic) NSArray* privateGames;
 @property (strong, nonatomic) NSArray* searchResults;
+@property (strong, nonatomic) Game* selectedGame;
 
 -(IBAction)privateGameSearch:(id)sender;
 -(IBAction)resignFirst:(id)sender;

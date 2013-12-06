@@ -259,6 +259,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="mainTableView" destination="i2U-KF-cfo" id="JwI-73-77q"/>
                         <outlet property="privateSearch" destination="Vrj-o7-p1U" id="LkG-Rr-QJm"/>
                         <outlet property="searchDisplayController" destination="Bs5-Jh-YVe" id="Hdb-Yc-VJK"/>
+                        <segue destination="jvV-et-isQ" kind="push" identifier="GameViewSeg" id="uDV-ib-iox"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3qq-4t-Ow8" sceneMemberID="firstResponder"/>

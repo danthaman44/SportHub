@@ -8,7 +8,6 @@
 
 #import "SearchGameViewController.h"
 #import "GameDetailViewController.h"
-#import "Game.h"
 #import "CJSONDeserializer.h"
 #import "LoggedInUser.h"
 
@@ -52,31 +51,36 @@
     NSArray* jsonData = [[CJSONDeserializer deserializer] deserialize:response error:&theError];
     NSMutableArray* tempGames = [[NSMutableArray alloc] init];
     NSMutableArray* tempPrivateGames = [[NSMutableArray alloc] init];
-    for (NSArray* object in jsonData) {
-        Game *g1 = [[Game alloc] init];
-        NSMutableArray *playersTemp = [[NSMutableArray alloc] init];
-        for (NSString* player in [object objectAtIndex:7]) {
-            [playersTemp addObject:player];
-        }
-        g1.players = playersTemp;
-        g1.id = [[object objectAtIndex:6] intValue];
-        g1.numPlayers = 3;
-        g1.location = [object objectAtIndex:1];
-        NSString *str =[object objectAtIndex:2];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-        NSDate *date = [formatter dateFromString:str];
-        g1.time = date;
-        g1.sport = [object objectAtIndex:3];
-        g1.isPrivate = [object objectAtIndex:5];
-        g1.numPlayers = [object objectAtIndex:4];
-        
-        if([g1.isPrivate isEqualToString:@"True"]) {
-            [tempPrivateGames addObject:g1];
-            NSLog(@"private");
-        }
-        else {
-            [tempGames addObject:g1];
+
+    if ([jsonData count] > 0) {
+        for (NSArray* object in jsonData) {
+            Game *g1 = [[Game alloc] init];
+            NSMutableArray *playersTemp = [[NSMutableArray alloc] init];
+            if([object objectAtIndex:7] != nil) {
+                for (NSString* player in [object objectAtIndex:7]) {
+                    [playersTemp addObject:player];
+                }
+            }
+            g1.players = playersTemp;
+            g1.id = [[object objectAtIndex:6] intValue];
+            g1.numPlayers = 3;
+            g1.location = [object objectAtIndex:1];
+            NSString *str =[object objectAtIndex:2];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+            NSDate *date = [formatter dateFromString:str];
+            g1.time = date;
+            g1.sport = [object objectAtIndex:3];
+            g1.isPrivate = [object objectAtIndex:5];
+            g1.numPlayers = [object objectAtIndex:4];
+            
+            if([g1.isPrivate isEqualToString:@"True"]) {
+                [tempPrivateGames addObject:g1];
+                NSLog(@"private");
+            }
+            else {
+                [tempGames addObject:g1];
+            }
         }
     }
     self.games = [NSArray arrayWithArray:tempGames];
@@ -88,6 +92,24 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        self.selectedGame = [self.searchResults objectAtIndex:indexPath.row];
+    } else {
+        self.selectedGame = [self.games objectAtIndex:indexPath.row];
+    }
+    [self performSegueWithIdentifier:@"GameViewSeg" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    GameDetailViewController* next = segue.destinationViewController;
+    next.gameId = self.selectedGame.id;
+    next.time = self.selectedGame.time;
+    next.location =  self.selectedGame.location;
+    next.numPlayers = self.selectedGame.numPlayers;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -107,7 +129,7 @@
         return [self.searchResults count];
     }
     else {
-        NSLog(@"%d", [self.games count]);
+        //NSLog(@"%d", [self.games count]);
         return [self.games count];
         
     }
@@ -126,13 +148,12 @@
         cell.textLabel.text = ((Game*)[self.searchResults objectAtIndex:indexPath.row]).location;
     }
     else {
-        NSLog(@"cell");
         Game *g = [self.games objectAtIndex:indexPath.row];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
         NSString *time = [dateFormatter stringFromDate:g.time];
         NSString *location = g.location;
-        NSString *cellValue = [NSString stringWithFormat: @"%@ %@ %@", time, @" - ", location];
+        NSString *cellValue = [NSString stringWithFormat: @"%@ - %@ - %@", time, location, g.sport];
         cell.textLabel.text = cellValue;
         return cell;
     }
@@ -157,17 +178,6 @@
                                                      selectedScopeButtonIndex]]];
     
     return YES;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"showGameDetail"]) {
-        NSIndexPath *indexPath = [self.mainTableView indexPathForSelectedRow];
-        GameDetailViewController *destViewController = segue.destinationViewController;
-        Game *main = [self.games objectAtIndex:indexPath.row];
-        destViewController.location = main.location;
-        destViewController.time = main.time;
-        destViewController.numPlayers = main.numPlayers;
-    }
 }
 
 -(IBAction)privateGameSearch:(id)sender {
