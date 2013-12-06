@@ -4,6 +4,65 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller - Create-->
+        <scene sceneID="Ums-Zy-431">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="nwg-G1-gT2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Create" id="5sy-X4-wOw"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mPe-aK-WIS">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ihV-3s-sfU" kind="relationship" relationship="rootViewController" id="Gaa-xg-Jzz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F6Q-nc-JUN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="387" y="-139"/>
+        </scene>
+        <!--Sport Picker View Controller-->
+        <scene sceneID="nbU-20-bLp">
+            <objects>
+                <viewController id="ihV-3s-sfU" customClass="SportPickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="myS-2R-9D4"/>
+                        <viewControllerLayoutGuide type="bottom" id="HLs-eh-4ie"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nOJ-Cd-5ah">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JTb-J7-xF1">
+                                <rect key="frame" x="0.0" y="119" width="320" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ihV-3s-sfU" id="WUf-1k-qCn"/>
+                                    <outlet property="delegate" destination="ihV-3s-sfU" id="yX3-gy-lbL"/>
+                                </connections>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CXI-rU-KGC">
+                                <rect key="frame" x="137" y="343" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Enter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectAndMove:" destination="ihV-3s-sfU" eventType="touchUpInside" id="2gU-Mf-XaY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="36S-YM-Ane"/>
+                    <connections>
+                        <outlet property="sportPicker" destination="JTb-J7-xF1" id="apg-rU-ezL"/>
+                        <segue destination="CZ4-MO-1fc" kind="push" identifier="CreateSeg" id="LW9-qe-gbC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wEP-dC-SBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="831" y="-135"/>
+        </scene>
         <!--Create Game View Controller - First-->
         <scene sceneID="W3I-pn-N6e">
             <objects>
@@ -65,7 +124,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtC-Bv-hgP">
-                                <rect key="frame" x="0.0" y="219" width="320" height="162"/>
+                                <rect key="frame" x="0.0" y="247" width="320" height="162"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <outlet property="dataSource" destination="CZ4-MO-1fc" id="XHd-YC-Poi"/>
@@ -78,29 +137,21 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dHt-Qn-VHJ">
-                                <rect key="frame" x="0.0" y="338" width="320" height="162"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="CZ4-MO-1fc" id="XVE-9p-e7R"/>
-                                    <outlet property="delegate" destination="CZ4-MO-1fc" id="ezH-yo-KXz"/>
-                                </connections>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Create game" image="first" id="u1e-5L-l1D"/>
+                    <navigationItem key="navigationItem" id="b7N-GS-5GS"/>
                     <connections>
                         <outlet property="createButton" destination="SYa-86-2BG" id="jsk-MA-Gl2"/>
                         <outlet property="datePicker" destination="2Ku-on-Xb9" id="zIo-6a-mw6"/>
                         <outlet property="locationPicker" destination="rtC-Bv-hgP" id="Dfg-UH-HEv"/>
-                        <outlet property="sportPicker" destination="dHt-Qn-VHJ" id="cvD-oy-o5x"/>
                         <outlet property="togglePrivate" destination="X4p-sp-wOu" id="LEV-Aj-MF8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qh2-T1-AhA" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653" y="-138"/>
+            <point key="canvasLocation" x="1258" y="-156"/>
         </scene>
         <!--Game Detail View Controller - Game Info-->
         <scene sceneID="3vx-dh-Hm2">
@@ -201,7 +252,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y0Z-qj-iVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1325" y="520"/>
+            <point key="canvasLocation" x="1631" y="526"/>
         </scene>
         <!--Search Game View Controller - Second-->
         <scene sceneID="ot8-2e-RuS">
@@ -288,7 +339,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="952" y="513"/>
+            <point key="canvasLocation" x="1258" y="519"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="zal-cE-sfs">
@@ -502,14 +553,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="CZ4-MO-1fc" kind="relationship" relationship="viewControllers" id="SUk-Ux-ee1"/>
                         <segue destination="0EL-8t-5d3" kind="relationship" relationship="viewControllers" id="M8t-EP-wfW"/>
                         <segue destination="UiQ-q7-NcP" kind="relationship" relationship="viewControllers" id="B3V-fb-GNU"/>
+                        <segue destination="nwg-G1-gT2" kind="relationship" relationship="viewControllers" id="ZPf-06-N4r"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNP-y4-bzi" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-276" y="230"/>
+            <point key="canvasLocation" x="-222" y="210"/>
         </scene>
         <!--My Games View Controller - My games-->
         <scene sceneID="2H7-Je-I7E">

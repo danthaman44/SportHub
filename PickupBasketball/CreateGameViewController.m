@@ -24,9 +24,18 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.locations  = [[NSArray alloc] initWithObjects:@"Wilson Gym",@"Brodie Gym",@"Central Campus Courts", nil];
-    self.sports = [[NSArray alloc] initWithObjects:@"Basketball", @"Curling", @"Underwater Basket Weaving", nil];
+    NSArray* frisbeeFields = [[NSArray alloc] initWithObjects:@"East Main Quad", @"West Main Quad", @"Central Campus Field", @"Koskinen", nil];
+    NSArray* basketballCourts = [[NSArray alloc] initWithObjects:@"Wilson", @"Brodie", @"Central Campus Courts", nil];
+    _sportLocs = @{@"Frisbee" : frisbeeFields,
+                                @"Soccer" : frisbeeFields,
+                                @"Basketball" : basketballCourts};
+    self.locations  = [self.sportLocs objectForKey:self.sport];
     self.datePicker.minimumDate = [[ NSDate alloc ] initWithTimeIntervalSinceNow: (NSTimeInterval) 0 ];
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    self.locations  = [self.sportLocs objectForKey:self.sport];
+    [self.locationPicker reloadAllComponents];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,12 +58,7 @@
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    if(pickerView == self.locationPicker) {
-        return [self.locations objectAtIndex:row];
-    }
-    else {
-        return [self.sports objectAtIndex:row];
-    }
+    return [self.locations objectAtIndex:row];
 }
 
 -(IBAction)displayGameInfo:(id)sender {
@@ -67,8 +71,7 @@
     NSString * location = [self.locations objectAtIndex:row];
     NSLog(@"%@", location);
     
-    NSInteger rowTwo = [self.sportPicker selectedRowInComponent:0];
-    NSString * sport = [self.sports objectAtIndex:rowTwo];
+    NSString * sport = self.sport;
     
     NSString * private = self.togglePrivate.on ? @"True" : @"False";
     
