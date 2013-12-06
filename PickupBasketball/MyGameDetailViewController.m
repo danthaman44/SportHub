@@ -66,9 +66,14 @@
                                      cachePolicy:NSURLRequestUseProtocolCachePolicy
                                      timeoutInterval:60.0];
     [theRequest setHTTPMethod:@"POST"];
-    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys: userName, @"Username", gameId, @"GameId", nil];
+    
     NSLog(userName);
-    NSLog(gameId);
+    NSLog(@"Gameid");
+    NSLog(@"%d", gameId);
+    NSString *IdAsString = [NSString stringWithFormat:@"%d", gameId];
+    
+    NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys: userName, @"Username", IdAsString, @"GameId", nil];
+
     
     NSError *error=nil;
     
@@ -86,6 +91,8 @@
     } else {
         
     }
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

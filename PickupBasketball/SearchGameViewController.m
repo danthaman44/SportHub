@@ -61,7 +61,7 @@
                 }
             }
             g1.players = playersTemp;
-            g1.id = [[object objectAtIndex:6] intValue];
+            g1.gid = [[object objectAtIndex:6] intValue];
             g1.numPlayers = 3;
             g1.location = [object objectAtIndex:1];
             NSString *str =[object objectAtIndex:2];
@@ -105,7 +105,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     GameDetailViewController* next = segue.destinationViewController;
-    next.gameId = self.selectedGame.id;
+    next.gameId = self.selectedGame.gid;
     next.time = self.selectedGame.time;
     next.location =  self.selectedGame.location;
     next.numPlayers = self.selectedGame.numPlayers;
@@ -178,7 +178,6 @@
     
     return YES;
 }
-
 
 
 @end

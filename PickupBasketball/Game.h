@@ -12,7 +12,7 @@
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) NSString *sport;
 @property (strong, nonatomic) NSDate *time;
-@property (assign, nonatomic) NSInteger id;
+@property (assign, nonatomic) NSInteger gid;
 @property (assign, nonatomic) NSInteger numPlayers;
 @property (strong, nonatomic) NSString* isPrivate;
 @property (strong, nonatomic) NSArray *players;
