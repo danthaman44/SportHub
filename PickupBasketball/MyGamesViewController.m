@@ -215,21 +215,24 @@
 
 -(void) scheduleNotification:(NSDate *) time {
     //Schedule the local notification
-    NSDate *pickerDate = [time dateByAddingTimeInterval:-300];
+    NSDate *current = [NSDate date];
     
-    //Just printing the time for debugging purposes.
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    if ([time compare:current]==NSOrderedDescending) {
+        NSDate *pickerDate = [time dateByAddingTimeInterval:-300];
     
-    localNotification.fireDate = pickerDate;
-    localNotification.alertBody = @"You have a game soon!";
-    localNotification.alertAction = @"You have a game soon!";
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication]applicationIconBadgeNumber] + 1;
+        //Just printing the time for debugging purposes.
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+        UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+        
+        localNotification.fireDate = pickerDate;
+        localNotification.alertBody = @"You have a game soon!";
+        localNotification.alertAction = @"You have a game soon!";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        localNotification.applicationIconBadgeNumber = [[UIApplication sharedApplication]applicationIconBadgeNumber] + 1;
     
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-    
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    }
 }
 
 @end
