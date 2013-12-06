@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AB2983ED1852752D000A07FA /* SportPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2983EC1852752D000A07FA /* SportPickerViewController.m */; };
+		AB2983F01852800B000A07FA /* PrivateSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB2983EF1852800B000A07FA /* PrivateSearchViewController.m */; };
 		AB68176C184D622600BE2F77 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB68176B184D622600BE2F77 /* SignUpViewController.m */; };
 		AB68176F184D623B00BE2F77 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB68176E184D623B00BE2F77 /* SignInViewController.m */; };
 		AB72F1A718500E3600B691FC /* LoggedInUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB72F1A618500E3600B691FC /* LoggedInUser.m */; };
@@ -49,6 +50,8 @@
 /* Begin PBXFileReference section */
 		AB2983EB1852752D000A07FA /* SportPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportPickerViewController.h; sourceTree = "<group>"; };
 		AB2983EC1852752D000A07FA /* SportPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportPickerViewController.m; sourceTree = "<group>"; };
+		AB2983EE1852800B000A07FA /* PrivateSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateSearchViewController.h; path = ../PrivateSearchViewController.h; sourceTree = "<group>"; };
+		AB2983EF1852800B000A07FA /* PrivateSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateSearchViewController.m; path = ../PrivateSearchViewController.m; sourceTree = "<group>"; };
 		AB68176A184D622600BE2F77 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		AB68176B184D622600BE2F77 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		AB68176D184D623B00BE2F77 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 		ECE0924F181A142C00F1995B /* PickupBasketball */ = {
 			isa = PBXGroup;
 			children = (
+				AB2983EE1852800B000A07FA /* PrivateSearchViewController.h */,
+				AB2983EF1852800B000A07FA /* PrivateSearchViewController.m */,
 				AB2983EB1852752D000A07FA /* SportPickerViewController.h */,
 				AB2983EC1852752D000A07FA /* SportPickerViewController.m */,
 				AB68176D184D623B00BE2F77 /* SignInViewController.h */,
@@ -331,6 +336,7 @@
 				AB72F1A718500E3600B691FC /* LoggedInUser.m in Sources */,
 				AB72F1B2185014FF00B691FC /* NSDictionary_JSONExtensions.m in Sources */,
 				AB72F1B0185014FF00B691FC /* CJSONDeserializer.m in Sources */,
+				AB2983F01852800B000A07FA /* PrivateSearchViewController.m in Sources */,
 				ECD6C3A7184FD8AC0005AE94 /* Game.m in Sources */,
 				ECE09263181A142C00F1995B /* CreateGameViewController.m in Sources */,
 				AB2983ED1852752D000A07FA /* SportPickerViewController.m in Sources */,
