@@ -103,11 +103,7 @@
     //Just printing the time for debugging purposes.
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    NSString *fTime = [dateFormatter stringFromDate:pickerDate];
-    NSLog(@"Alert will fire at:%@",fTime);
-    
     UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    
     localNotification.fireDate = pickerDate;
     localNotification.alertBody = @"You have a game in hour";
     localNotification.alertAction = @"You have a game in hour";

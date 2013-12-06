@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) IBOutlet UITableView  *mainTableView;
 
+-(void) scheduleNotification:(NSDate *) time;
+
 @end
