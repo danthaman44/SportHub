@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UISwitch *togglePrivate;
 @property (strong, nonatomic) NSArray *sports;
 @property (strong, nonatomic) NSString* sport;
+@property (strong, nonatomic) NSDictionary* sportLocs;
 
 -(IBAction)displayGameInfo:(id)sender;
 -(void)scheduleNotification:(NSDate*)time;

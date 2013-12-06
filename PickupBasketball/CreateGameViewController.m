@@ -26,11 +26,16 @@
 	// Do any additional setup after loading the view, typically from a nib.
     NSArray* frisbeeFields = [[NSArray alloc] initWithObjects:@"East Main Quad", @"West Main Quad", @"Central Campus Field", @"Koskinen", nil];
     NSArray* basketballCourts = [[NSArray alloc] initWithObjects:@"Wilson", @"Brodie", @"Central Campus Courts", nil];
-    NSDictionary *sportLocs = @{@"Frisbee" : frisbeeFields,
+    _sportLocs = @{@"Frisbee" : frisbeeFields,
                                 @"Soccer" : frisbeeFields,
                                 @"Basketball" : basketballCourts};
-    self.locations  = [sportLocs objectForKey:self.sport];
+    self.locations  = [self.sportLocs objectForKey:self.sport];
     self.datePicker.minimumDate = [[ NSDate alloc ] initWithTimeIntervalSinceNow: (NSTimeInterval) 0 ];
+}
+
+-(void) viewDidAppear:(BOOL)animated {
+    self.locations  = [self.sportLocs objectForKey:self.sport];
+    [self.locationPicker reloadAllComponents];
 }
 
 - (void)didReceiveMemoryWarning
