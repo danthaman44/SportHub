@@ -10,8 +10,7 @@
 #import "LoggedInUser.h"
 
 @interface GameDetailViewController () {
-    LoggedInUser *currentUser;
-    NSString *userName;
+
 }
 
 @end
@@ -40,9 +39,6 @@
 	// Do any additional setup after loading the view.
 	// Do any additional setup after loading the view.
     
-    //Get logged in user
-    userName = [LoggedInUser getInstance].username;
-    
     //Show the game time
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
@@ -65,7 +61,7 @@
 }
 
 -(IBAction)joinGame {
-    NSLog(@"Button pressed");
+    NSString *userName = [LoggedInUser getInstance].username;
     NSString *queryString = [NSString stringWithFormat:@"http://dukedb-spm23.cloudapp.net/django/db-beers/join_game"];
     NSMutableURLRequest *theRequest=[NSMutableURLRequest
                                      requestWithURL:[NSURL URLWithString:
@@ -73,6 +69,9 @@
                                      cachePolicy:NSURLRequestUseProtocolCachePolicy
                                      timeoutInterval:60.0];
     [theRequest setHTTPMethod:@"POST"];
+    
+    
+    
     NSDictionary *postDict = [NSDictionary dictionaryWithObjectsAndKeys:userName, @"Username", gameId, @"GameId", nil];
     
     NSError *error=nil;

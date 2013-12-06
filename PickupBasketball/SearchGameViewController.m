@@ -77,17 +77,11 @@
         }
         else {
             [tempGames addObject:g1];
-            NSLog(@"public");
         }
     }
     self.games = [NSArray arrayWithArray:tempGames];
     self.privateGames = [NSArray arrayWithArray:tempPrivateGames];
     [self.mainTableView reloadData];
-    
-    NSLog(@"%d", [self.games count]);
-    for(Game* g in self.games) {
-        NSLog(@"%@", g.sport);
-    }
 }
 
 - (void)didReceiveMemoryWarning
