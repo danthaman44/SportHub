@@ -88,7 +88,6 @@
     
     if ([returnString isEqualToString:@"True"]) {
         NSLog(@"success!");
-        [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         
     }

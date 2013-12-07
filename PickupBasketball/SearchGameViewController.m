@@ -4,7 +4,7 @@
 //
 //  Created by Wei Deng on 10/24/13.
 //  Copyright (c) 2013 Wei Deng. All rights reserved.
-//
+//  Authors: Matt Parides & Wei Deng
 
 #import "SearchGameViewController.h"
 #import "GameDetailViewController.h"

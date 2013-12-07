@@ -8,7 +8,7 @@
         <scene sceneID="Ums-Zy-431">
             <objects>
                 <navigationController definesPresentationContext="YES" id="nwg-G1-gT2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create" id="5sy-X4-wOw"/>
+                    <tabBarItem key="tabBarItem" title="Create" image="second" id="5sy-X4-wOw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mPe-aK-WIS">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -580,7 +580,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My games" id="lca-Q8-ml5"/>
+                    <tabBarItem key="tabBarItem" title="My Games" image="first" id="lca-Q8-ml5"/>
                     <navigationItem key="navigationItem" title="My games" id="coQ-W6-cd7"/>
                     <connections>
                         <outlet property="mainTableView" destination="BDM-DF-Vdb" id="Vbs-NQ-Yqh"/>
@@ -590,11 +590,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="176" y="1153"/>
         </scene>
-        <!--Navigation Controller - My games-->
+        <!--Navigation Controller - My Games-->
         <scene sceneID="SY6-Iw-k9U">
             <objects>
                 <navigationController definesPresentationContext="YES" id="UiQ-q7-NcP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My games" id="Hli-Le-mfJ"/>
+                    <tabBarItem key="tabBarItem" title="My Games" image="first" id="Hli-Le-mfJ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FUI-kr-QqT">
                         <autoresizingMask key="autoresizingMask"/>
@@ -648,7 +648,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Private" id="WAE-5X-Px3"/>
+                    <tabBarItem key="tabBarItem" title="Private" image="first" id="WAE-5X-Px3"/>
                     <connections>
                         <outlet property="privateSearch" destination="6on-1r-41R" id="5sh-ti-dMl"/>
                     </connections>
@@ -737,6 +737,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Bw-7z-72b">
+                                <rect key="frame" x="189" y="290" width="111" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CRN-TD-oER">
                                 <rect key="frame" x="114" y="335" width="84" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -761,11 +768,19 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game ID:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bNQ-6f-6h8">
+                                <rect key="frame" x="93" y="290" width="111" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Game Info" id="FwP-F6-G82"/>
                     <connections>
+                        <outlet property="GIDLabel" destination="0Bw-7z-72b" id="Eky-GH-CgH"/>
                         <outlet property="locationLabel" destination="Siu-fO-alb" id="7ST-8T-QFs"/>
                         <outlet property="numPlayersLabel" destination="T4E-ed-M1i" id="yxr-NC-kja"/>
                         <outlet property="sportLabel" destination="Kl8-C2-G1H" id="1fh-nY-a8I"/>

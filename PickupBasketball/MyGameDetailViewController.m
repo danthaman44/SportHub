@@ -39,14 +39,14 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     NSString *timeForLabel = [dateFormatter stringFromDate:time];
-    timeLabel.text = timeForLabel;
+    self.timeLabel.text = timeForLabel;
     
     //Show game location
-    locationLabel.text = location;
+    self.locationLabel.text = location;
     
     //Show number of players
-    NSString *temp = [NSString stringWithFormat:@"%d", numPlayers];
-    numPlayersLabel.text = temp;
+    self.numPlayersLabel.text = [NSString stringWithFormat:@"%d", numPlayers];;
+    self.GIDLabel.text = [NSString stringWithFormat:@"%d", self.gameId];
     self.sportLabel.text = self.sport;
 }
 
@@ -83,7 +83,6 @@
     
     if ([returnString isEqualToString:@"True"]) {
         NSLog(@"success!");
-        [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         
     }
