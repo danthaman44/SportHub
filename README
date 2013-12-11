@@ -1,4 +1,19 @@
-An IOS App for organizing pick-up sports games.
+SportHub: The IOS App for organizing pick-up sports.
  
 Created for Databases 316
+
+
+
+Setup:
+
+Server - Our server is running on windows azure apache servers provided by Duke University. We're running django backed by postgresql.
+
+The server code is in the directories: mysite, db_beers, and static.
+We are using http to send data between the app and server.
+
+Setting up django can be involved. If you are new to django and want to boot this server up on your own, check out a django tutorial.
+Tutorial: https://docs.djangoproject.com/en/dev/intro/tutorial01/
+
+
+App - The iOS code is objective-C written in XCode. It is compatable with iOS 7, 6 and 5. 
 

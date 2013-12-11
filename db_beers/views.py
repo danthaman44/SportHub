@@ -1,4 +1,5 @@
 import re
+import hashlib
 import json
 import logging
 import sys
@@ -35,7 +36,9 @@ def login_user(request):
     body = json.loads(request.body)
     username = body['Username']
     password = body['Password']
-    
+    h = hashlib.md5()
+    h.update(password)
+    password = h.hexdigest()
     user = Player.objects.filter(name=username, password=password)
     if user.count():
       return HttpResponse("True", content_type="text/plain")
@@ -55,7 +58,7 @@ def create_game(request):
     creator = body['Username']
     creator_obj = Player.objects.filter(name=creator)[0]
     priv = False
-    if private == "T":
+    if private == "True":
       priv = True
     g = Games(creator=creator_obj, location=field, when_created = datetime.datetime.now(), start_time = time, end_time=end_time, private=priv, visible=False, sport_type=sport)
     g.save()
@@ -134,6 +137,9 @@ def create_user(request):
     body = json.loads(request.body)
     username = body['Username']
     password = body['Password']
+    h = hashlib.md5()
+    h.update(password)
+    password = h.hexdigest()
     email = body['Email']
     phone = body['Phone']
     
