@@ -41,12 +41,6 @@
     NSError *requestError;
     NSURLResponse *urlResponse = nil;
     NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&requestError];
-    NSString *responseBody = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-    //NSError *e;
-    //NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseBody options:nil error:&e];
-    //for(id key in dict) {
-    //   NSLog(@"key=%@ value=%@", key, [dict objectForKey:key]);
-    // }
     NSError *theError = nil;
     NSArray* jsonData = [[CJSONDeserializer deserializer] deserialize:response error:&theError];
     NSMutableArray* tempGames = [[NSMutableArray alloc] init];
@@ -75,7 +69,6 @@
             
             if([g1.isPrivate isEqualToString:@"True"]) {
                 [tempPrivateGames addObject:g1];
-                NSLog(@"private");
             }
             else {
                 [tempGames addObject:g1];
@@ -125,7 +118,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        NSLog(@"search");
         return [self.searchResults count];
     }
     else {
@@ -141,23 +133,25 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
+    
+    Game* g = [[Game alloc]init];
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = ((Game*)[self.searchResults objectAtIndex:indexPath.row]).location;
+        g =(Game*)[self.searchResults objectAtIndex:indexPath.row];
     }
     else {
-        Game *g = [self.games objectAtIndex:indexPath.row];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-        NSString *time = [dateFormatter stringFromDate:g.time];
-        NSString *location = g.location;
-        NSString *cellValue = [NSString stringWithFormat: @"%@ - %@ - %@", time, location, g.sport];
-        cell.textLabel.text = cellValue;
-        return cell;
+        g = [self.games objectAtIndex:indexPath.row];
     }
-    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString *time = [dateFormatter stringFromDate:g.time];
+    NSString *location = g.location;
+    NSString *cellValue = [NSString stringWithFormat: @"%@ - %@ - %@", time, location, g.sport];
+    cell.textLabel.text = cellValue;
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    cell.detailTextLabel.text = [dateFormatter stringFromDate:g.time];
     return cell;
 }
 

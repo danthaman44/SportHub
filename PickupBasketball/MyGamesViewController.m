@@ -66,7 +66,6 @@
     
     if ([returnString isEqualToString:@"True"]) {
         NSLog(@"success!");
-        [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         
     }
@@ -186,7 +185,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
     
     Game *g = [games objectAtIndex:indexPath.row];
@@ -194,8 +193,10 @@
     [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     NSString *time = [dateFormatter stringFromDate:g.time];
     NSString *location = g.location;
-    NSString *cellValue = [NSString stringWithFormat: @"%@ %@ %@", time, @" - ", location];
+    NSString *cellValue = [NSString stringWithFormat: @"%@ - %@ - %@", time, location, g.sport];
     cell.textLabel.text = cellValue;
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    cell.detailTextLabel.text = [dateFormatter stringFromDate:g.time];
     return cell;
 }
 
