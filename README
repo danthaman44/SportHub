@@ -1,12 +1,10 @@
 SportHub: The IOS App for organizing pick-up sports.
- 
-Created for Databases 316
 
 
 
 Setup:
 
-Server - Our server is running on windows azure apache servers provided by Duke University. We're running django backed by postgresql.
+Server - Our server is running on Windows Azure Apache servers provided by Duke University. We're running django backed by postgresql.
 
 The server code is in the directories: mysite, db_beers, and static.
 We are using http to send data between the app and server.
